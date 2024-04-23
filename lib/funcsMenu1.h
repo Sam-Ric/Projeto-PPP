@@ -1,5 +1,5 @@
-#ifndef MENUS_H
-#define MENUS_H
+#ifndef FUNCSMENU1_H
+#define FUNCSMENU1_H
 
 void novoDoente(list_doentes_t *list);
 

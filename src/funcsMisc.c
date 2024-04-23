@@ -19,10 +19,9 @@ int convertToInteger(char *str){
     return res;
 }
 
-int inputFunction(){
-    char str[5];
+void inputFunction(char str[], int size){
     printf(">> ");
-    fgets(str, 5, stdin);
+    fgets(str, size, stdin);
     int len = strlen(str);
     if(str[len-1] == '\n'){
         str[len-1] = '\0';
@@ -32,7 +31,6 @@ int inputFunction(){
         while((ch = getchar()) != EOF && ch != '\n')
             ;
     }
-    return convertToInteger(str);
 }
 
 void loadDoentes(list_doentes_t *list){
@@ -43,8 +41,8 @@ void loadDoentes(list_doentes_t *list){
     int count = 0; // Variável/Contador que identifica o tipo de dados de uma determinada linha
     if(ficheiroDoentes != NULL){
         // Variáveis que irão armazenar os diferentes tipos de dados do ficheiro
-        int id, contacto;
-        char nome[50], data_de_nascimento[50], num_cc[50], email[50];
+        int id;
+        char nome[50], data_de_nascimento[50], num_cc[50], email[50], contacto[50];
         while(fgets(buffer, 50, ficheiroDoentes)){ // Percorrer o ficheiro todo, uma linha de cada vez
             int len = strlen(buffer);
             buffer[len-1] = '\0';
@@ -66,8 +64,8 @@ void loadDoentes(list_doentes_t *list){
                 //printf("[DEBUG] Número do CC: %s\n", num_cc);
             }
             if(count % 6 == 4){ // Caso se trate de um número de telefone, carregá-lo para a variável 'contacto'
-                contacto = convertToInteger(buffer);
-                //printf("[DEBUG] Contacto: %d\n", contacto);
+                strcpy(contacto, buffer);
+                //printf("[DEBUG] Contacto: %s\n", contacto);
             }
             if(count % 6 == 5){ // Caso se trate de um email, carregá-lo para a variável 'email' e inserir todos os dados na lista dos dados dos doentes
                 strcpy(email, buffer);
@@ -81,4 +79,21 @@ void loadDoentes(list_doentes_t *list){
     }
     printf("[DEBUG] Dados do ficheiro 'doentes.txt' carregados.\n");
     fclose(ficheiroDoentes); // Fechar o ficheiro 'doentes.txt'
+}
+
+void updateDoentes(list_doentes_t *list){
+    FILE * ficheiro;
+    ficheiro = fopen("doentes.txt", "w");
+    l_noDoentes_t *temp = list -> front;
+    while(temp != NULL){
+        fprintf(ficheiro, "%d\n", temp -> id);
+        fprintf(ficheiro, "%s\n", temp -> nome);
+        fprintf(ficheiro, "%s\n", temp -> data_de_nascimento);
+        fprintf(ficheiro, "%s\n", temp -> num_cc);
+        fprintf(ficheiro, "%s\n", temp -> contacto);
+        fprintf(ficheiro, "%s\n", temp -> email);
+        temp = temp -> next;
+    }
+    printf("[DEBUG] Ficheiro 'doentes.txt' atualizado!\n");
+    fclose(ficheiro);
 }
