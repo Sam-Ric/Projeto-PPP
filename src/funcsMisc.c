@@ -8,17 +8,20 @@
 
 int convertToInteger(char *str){
     int len = strlen(str);
-    printf("[DEBUG] Input string = %s\n[DEBUG] String length = %d\n", str, len);
+    //printf("[DEBUG] Input string = %s\n[DEBUG] String length = %d\n", str, len);
     int res = 0;
     for(int i = 0; i < len; ++i){
-        if(str[i] != '\0' || str[i] != '\n')
+        if(str[i] != '\0' || str[i] != '\n'){
             res = res*10 + (str[i] - '0');
+            //printf("[DEBUG] Char in convertToInteger = %c || ASCII = %.3d\n", str[i], str[i]);
+        }
     }
     return res;
 }
 
 int inputFunction(){
     char str[5];
+    printf(">> ");
     fgets(str, 5, stdin);
     int len = strlen(str);
     if(str[len-1] == '\n'){
@@ -36,45 +39,39 @@ void loadDoentes(list_doentes_t *list){
     // Carregar os dados do ficheiro 'doentes.txt' para uma lista
     FILE * ficheiroDoentes;
     ficheiroDoentes = fopen("doentes.txt", "r"); // Abrir o ficheiro 'doentes.txt'
-    char buffer[50];
-    int count = 0;
+    char buffer[50]; // String que irá armazenar o conteúdo da linha que está a ser lida
+    int count = 0; // Variável/Contador que identifica o tipo de dados de uma determinada linha
     if(ficheiroDoentes != NULL){
+        // Variáveis que irão armazenar os diferentes tipos de dados do ficheiro
         int id, contacto;
         char nome[50], data_de_nascimento[50], num_cc[50], email[50];
-        while(fgets(buffer, 50, ficheiroDoentes)){
+        while(fgets(buffer, 50, ficheiroDoentes)){ // Percorrer o ficheiro todo, uma linha de cada vez
             int len = strlen(buffer);
-            if(buffer[len-1] == '\n'){
-                buffer[len-1] = '\0';
-            } else {
-            int ch;
-            while((ch = getchar()) != EOF && ch != '\n')
-                ;
-            }
-            if(count % 6 == 0){
-                for(int i = 0; i < (int)strlen(buffer); ++i)
-                    printf("%c\n", buffer[i]);
+            buffer[len-1] = '\0';
+            buffer[len-2] = '\0';
+            if(count % 6 == 0){ // Caso se trate de um ID, carregá-lo para a variável 'id'
                 id = convertToInteger(buffer);
-                printf("ID: %d\n", id);
+                //printf("[DEBUG] ID: %d\n", id);
             }
-            if(count % 6 == 1){
+            if(count % 6 == 1){ // Caso se trate de um nome, carregá-lo para a variável 'nome'
                 strcpy(nome, buffer);
-                printf("Nome: %s\n", nome);
+                //printf("[DEBUG] Nome: %s\n", nome);
             }
-            if(count % 6 == 2){
+            if(count % 6 == 2){ // Caso se trate de uma data de nascimento, carregá-la para a variável 'data_de_nascimento'
                 strcpy(data_de_nascimento, buffer);
-                printf("Data de nascimento: %s\n", data_de_nascimento);
+                //printf("[DEBUG] Data de nascimento: %s\n", data_de_nascimento);
             }
-            if(count % 6 == 3){
+            if(count % 6 == 3){ // Caso se trate de um número de CC, carregá-lo para a variável 'num_cc'
                 strcpy(num_cc, buffer);
-                printf("Número do CC: %s\n", num_cc);
+                //printf("[DEBUG] Número do CC: %s\n", num_cc);
             }
-            if(count % 6 == 4){
+            if(count % 6 == 4){ // Caso se trate de um número de telefone, carregá-lo para a variável 'contacto'
                 contacto = convertToInteger(buffer);
-                printf("Contacto: %d\n", contacto);
+                //printf("[DEBUG] Contacto: %d\n", contacto);
             }
-            if(count % 6 == 5){
+            if(count % 6 == 5){ // Caso se trate de um email, carregá-lo para a variável 'email' e inserir todos os dados na lista dos dados dos doentes
                 strcpy(email, buffer);
-                printf("Email: %s\n", email);
+                //printf("[DEBUG] Email: %s\n", email);
                 insertDoentes(list, id, nome, data_de_nascimento, num_cc, contacto, email);
             }
             ++count;
@@ -82,5 +79,6 @@ void loadDoentes(list_doentes_t *list){
     } else {
         printf("[!] Não foi possível abrir o ficheiro.\n");
     }
+    printf("[DEBUG] Dados do ficheiro 'doentes.txt' carregados.\n");
     fclose(ficheiroDoentes); // Fechar o ficheiro 'doentes.txt'
 }

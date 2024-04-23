@@ -21,7 +21,6 @@ int main(){
         printf("[6] Registar as tensões, o peso e a altura de um determinado doente\n");
         printf("[0] Sair da aplicação\n");
         int input = inputFunction(); // Input do utilizador
-        printf("Input = %d\n", input);
         if(input == 1){ // Introduzir dados de um novo doente
             novoDoente(&doentes);
         }
@@ -41,10 +40,13 @@ int main(){
 
         }
         else if(input == 0){ // Sair da aplicação
-            status = 0;
+            clearDoentes(&doentes); // Libertar a memória alocada para a lista dos dados dos doentes
+            status = 0; // Terminar a execução do ciclo while
+            printf("\n[DEBUG] Execução terminada.\n");
         }
         else { // Inputs inválidos.
             printf("\n[!] Opção inválida.\n");
         }
     }
+    return 0;
 }
