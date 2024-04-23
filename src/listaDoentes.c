@@ -7,17 +7,17 @@
 #include <string.h>
 #include "../lib/listaDoentes.h"
 
-void initDoentes(listaDoentes_t *list){
+void initDoentes(list_doentes_t *list){
 	list -> num_elems = 0;
 	list -> front = NULL;
 }
 
-int emptyDoentes(listaDoentes_t *list){
+int emptyDoentes(list_doentes_t *list){
 	return list -> front == NULL;
 }
 
-void clearDoentes(listaDoentes_t *list){
-	noDoentes_t *node;
+void clearDoentes(list_doentes_t *list){
+	l_noDoentes_t *node;
 	while(list -> front != NULL){
 		node = list -> front;
 		list -> front = list -> front -> next;
@@ -26,9 +26,9 @@ void clearDoentes(listaDoentes_t *list){
 	initDoentes(list);
 }
 
-void insertDoentes(listaDoentes_t *list, int id, char nome[50], char data_de_nascimento[50], char num_cc[50], int contacto, char email[50]){
-	noDoentes_t *node = (noDoentes_t*)malloc(sizeof(noDoentes_t));
-	noDoentes_t *prev, *cur;
+void insertDoentes(list_doentes_t *list, int id, char nome[50], char data_de_nascimento[50], char num_cc[50], int contacto, char email[50]){
+	l_noDoentes_t *node = (l_noDoentes_t*)malloc(sizeof(l_noDoentes_t));
+	l_noDoentes_t *prev, *cur;
 	if(node != NULL){
 		node -> id = id;
         strcpy(node -> nome, nome);
@@ -48,7 +48,7 @@ void insertDoentes(listaDoentes_t *list, int id, char nome[50], char data_de_nas
 	}
 }
 
-void searchDoentes(listaDoentes_t *list, int val, noDoentes_t **prev, noDoentes_t **cur){
+void searchDoentes(list_doentes_t *list, int val, l_noDoentes_t **prev, l_noDoentes_t **cur){
 	*prev = NULL;
 	*cur = list -> front;
 	while(*cur != NULL && (*cur) -> id < val){
@@ -57,8 +57,8 @@ void searchDoentes(listaDoentes_t *list, int val, noDoentes_t **prev, noDoentes_
 	}
 }
 
-void removeDoentes(listaDoentes_t *list, int val){
-	noDoentes_t *prev, *cur;
+void removeDoentes(list_doentes_t *list, int val){
+	l_noDoentes_t *prev, *cur;
 	searchDoentes(list, val, &prev, &cur);
 	if(cur != NULL && cur -> id == val){
         if(prev != NULL)

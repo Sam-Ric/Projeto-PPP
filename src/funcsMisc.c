@@ -4,15 +4,15 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "../lib/funcs.h"
 #include "../lib/listaDoentes.h"
 
 int convertToInteger(char *str){
     int len = strlen(str);
+    printf("[DEBUG] Input string = %s\n[DEBUG] String length = %d\n", str, len);
     int res = 0;
     for(int i = 0; i < len; ++i){
-        res += str[i] - '0';
-        if(i < len - 1) res *= 10;
+        if(str[i] != '\0' || str[i] != '\n')
+            res = res*10 + (str[i] - '0');
     }
     return res;
 }
@@ -32,7 +32,7 @@ int inputFunction(){
     return convertToInteger(str);
 }
 
-void loadDoentes(listaDoentes_t *list){
+void loadDoentes(list_doentes_t *list){
     // Carregar os dados do ficheiro 'doentes.txt' para uma lista
     FILE * ficheiroDoentes;
     ficheiroDoentes = fopen("doentes.txt", "r"); // Abrir o ficheiro 'doentes.txt'
@@ -51,6 +51,8 @@ void loadDoentes(listaDoentes_t *list){
                 ;
             }
             if(count % 6 == 0){
+                for(int i = 0; i < (int)strlen(buffer); ++i)
+                    printf("%c\n", buffer[i]);
                 id = convertToInteger(buffer);
                 printf("ID: %d\n", id);
             }

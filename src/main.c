@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <string.h>
-#include "../lib/funcs.h"
-#include "../lib/menus.h"
+#include "../lib/funcsMisc.h"
+#include "../lib/funcsMenu.h"
 #include "../lib/listaDoentes.h"
 
 int main(){
     int status = 1;
-    listaDoentes_t doentes;
-    initDoentes(&doentes);
-    loadDoentes(&doentes); // Carregar os dados do ficheiro 'doentes.txt' para uma lista
+    list_doentes_t doentes;
+    initDoentes(&doentes); // Inicializar a lista que irá armazenar os dados do ficheiro 'doentes.txt'
+    loadDoentes(&doentes); // Carregar os dados do ficheiro 'doentes.txt' para a lista
 
     // Permitir que o utilizador selecione o que pretende fazer enquanto a condição se verificar
     while(status){
