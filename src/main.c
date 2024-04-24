@@ -2,13 +2,21 @@
 #include <string.h>
 #include "../lib/funcsMisc.h"
 #include "../lib/funcsMenu1.h"
+#include "../lib/funcsMenu2.h"
+#include "../lib/funcsMenu3.h"
+#include "../lib/funcsMenu6.h"
 #include "../lib/listaDoentes.h"
+#include "../lib/listaRegistos.h"
+#include "../lib/listaDoentesOA.h"
 
 int main(){
     int status = 1; // Variável que define se o programa está em execução
     list_doentes_t doentes;
-    initDoentes(&doentes); // Inicializar a lista que irá armazenar os dados do ficheiro 'doentes.txt'
-    loadDoentes(&doentes); // Carregar os dados do ficheiro 'doentes.txt' para a lista
+    initListaDoentes(&doentes); // Inicializar a lista que irá armazenar os dados do ficheiro 'doentes.txt'
+    loadDoentes(&doentes); // Carregar os dados do ficheiro 'doentes.txt' para a repetiva lista
+    list_registos_t registos;
+    initListaRegistos(&registos); // Inicializar a lista que irá armazenar os dados do ficheiro 'registos.txt'
+    loadRegistos(&registos); // Carregar os dados do ficheiro 'registos.txt' para a respetiva lista
 
     while(status){
         printf("\n================================= MENU ==================================\n");
@@ -29,10 +37,14 @@ int main(){
             novoDoente(&doentes);
         }
         else if(menu == 2){ // Eliminar um doente existente
-
+            removerDoente(&doentes);
         }
         else if(menu == 3){ // Listar todos os doentes por ordem alfabética
-
+            list_doentesOA_t doentesOA;
+            initListaDoentesOA(&doentesOA);
+            loadDoentesOA(&doentesOA, &doentes);
+            printDoentesOA(&doentesOA);
+            clearListaDoentesOA(&doentesOA);
         }
         else if(menu == 4){ // Listar os doentes com tensões máximas acima de um determinado valor
 
@@ -41,10 +53,11 @@ int main(){
 
         }
         else if(menu == 6){ // Registar as tensões, o peso e a altura de um determinado doente
-
+            novoRegisto(&registos, &doentes);
         }
         else if(menu == 0){ // Sair da aplicação
-            clearDoentes(&doentes); // Libertar a memória alocada para a lista dos dados dos doentes
+            clearListaDoentes(&doentes); // Libertar a memória alocada para a lista dos dados dos doentes
+            clearListaRegistos(&registos); // Libertar a memória alocada para a lista dos registos dos doentes
             status = 0; // Terminar a execução do ciclo while
             printf("\n[DEBUG] Execução terminada.\n");
         }

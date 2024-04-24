@@ -1,5 +1,6 @@
 /*
-    Funções das diferentes funcionalidades da aplicação
+    Funções da primeira opção do menu
+    >> [1] Introduzir dados de um novo doente
 */
 
 #include <stdio.h>
@@ -15,7 +16,7 @@ void novoDoente(list_doentes_t *list){
             ++id;
             temp = temp -> next;
         }
-    printf("\n[DEBUG] ID disponível: %d\n", id);
+    //printf("\n[DEBUG] ID disponível: %d\n", id);
 
     // Pedir ao utilizador os dados do novo doente
     printf("\nNome do doente:\n");
@@ -39,10 +40,8 @@ void novoDoente(list_doentes_t *list){
     inputFunction(email, 50);
 
     // Adicionar o novo doente à lista
-    insertDoentes(list, id, nome, data_de_nascimento, num_cc, contacto, email);
-
+    insertListaDoentes(list, id, nome, data_de_nascimento, num_cc, contacto, email);
 
     // Atualizar o ficheiro 'doentes.txt'
     updateDoentes(list);
-
 }
