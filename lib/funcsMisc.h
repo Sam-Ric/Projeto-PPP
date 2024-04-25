@@ -14,5 +14,6 @@ void loadRegistos(list_registos_t *list); // Função que carrega os dados do fi
 void updateDoentes(list_doentes_t *list); // Função que atualiza o ficheiro 'doentes.txt'
 void updateRegistos(list_registos_t *list); // Função que atualiza o ficheiro 'registos.txt'
 int verifyID(list_doentes_t *list, int id); // Função que verifica a existência de um ID
+int isInteger(char *str); // Função que verifica se há um inteiro armazenado numa string
 
 #endif

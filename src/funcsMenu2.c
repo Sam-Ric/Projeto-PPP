@@ -12,7 +12,7 @@ void removerDoente(list_doentes_t *list){
     char input[50];
     inputFunction(input, 50);
     int id = convertToInteger(input);
-    if(id < 1 || id > (int)list -> num_elems){
+    if(verifyID(list, id)){
         printf("[!] ID inválido.\n");
     } else {
         // Remover o doente selecionado da lista
