@@ -49,19 +49,19 @@ void insertListaDoentes(list_doentes_t *list, int id, char nome[50], char data_d
 	printf("[DEBUG] Doente inserido na lista!\n");
 }
 
-void searchListaDoentes(list_doentes_t *list, int val, l_noDoentes_t **prev, l_noDoentes_t **cur){
+void searchListaDoentes(list_doentes_t *list, int id, l_noDoentes_t **prev, l_noDoentes_t **cur){
 	*prev = NULL;
 	*cur = list -> front;
-	while(*cur != NULL && (*cur) -> id < val){
+	while(*cur != NULL && (*cur) -> id < id){
 		*prev = *cur;
 		*cur = (*cur) -> next;
 	}
 }
 
-void removeListaDoentes(list_doentes_t *list, int val){
+void removeListaDoentes(list_doentes_t *list, int id){
 	l_noDoentes_t *prev, *cur;
-	searchListaDoentes(list, val, &prev, &cur);
-	if(cur != NULL && cur -> id == val){
+	searchListaDoentes(list, id, &prev, &cur);
+	if(cur != NULL && cur -> id == id){
         if(prev != NULL)
             prev -> next = cur -> next;
         else

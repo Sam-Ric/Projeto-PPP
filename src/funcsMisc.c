@@ -127,6 +127,7 @@ void loadRegistos(list_registos_t *list){
         printf("[!] Não foi possível abrir o ficheiro.\n");
     }
     printf("[DEBUG] Dados do ficheiro 'registos.txt' carregados.\n");
+    printf("[DEBUG] Nº de elementos carregados: %d\n", (int)list -> num_elems);
     fclose(ficheiroRegistos); // Fechar o ficheiro 'registos.txt'
 }
 

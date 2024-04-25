@@ -37,7 +37,7 @@ int main(){
             novoDoente(&doentes);
         }
         else if(menu == 2){ // Eliminar um doente existente
-            removerDoente(&doentes);
+            removerDoente(&doentes, &registos);
         }
         else if(menu == 3){ // Listar todos os doentes por ordem alfabética
             list_doentesOA_t doentesOA;

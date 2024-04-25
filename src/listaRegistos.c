@@ -49,11 +49,25 @@ void insertListaRegistos(list_registos_t *list, int id, char data[50], int tensa
 	printf("[DEBUG] Registo inserido na lista!\n");
 }
 
-void searchListaRegistos(list_registos_t *list, int val, l_noRegistos_t **prev, l_noRegistos_t **cur){
+void searchListaRegistos(list_registos_t *list, int id, l_noRegistos_t **prev, l_noRegistos_t **cur){
 	*prev = NULL;
 	*cur = list -> front;
-	while(*cur != NULL && (*cur) -> id < val){
+	while(*cur != NULL && (*cur) -> id < id){
 		*prev = *cur;
 		*cur = (*cur) -> next;
 	}
+}
+
+void removeListaRegistos(list_registos_t *list, int id){
+	l_noRegistos_t *prev, *cur;
+	searchListaRegistos(list, id, &prev, &cur);
+	if(cur != NULL && cur -> id == id){
+        if(prev != NULL)
+            prev -> next = cur -> next;
+        else
+            list -> front = cur -> next;
+		free(cur);
+		list -> num_elems--;
+    }
+	printf("[DEBUG] Registo removido da lista!\n");
 }
