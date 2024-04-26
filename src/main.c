@@ -43,6 +43,7 @@ int main(){
             list_doentesOA_t doentesOA;
             initListaDoentesOA(&doentesOA);
             loadDoentesOA(&doentesOA, &doentes);
+            printf("[DEBUG] Elementos carregados para lista por ordem alfabética.\n");
             printDoentesOA(&doentesOA);
             clearListaDoentesOA(&doentesOA);
         }

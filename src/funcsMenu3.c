@@ -8,6 +8,7 @@
 
 void printDoentesOA(list_doentesOA_t *doentesOA){
 	l_noDoentesOA_t *node = doentesOA -> front;
+    printf("[DEBUG] Primeiro elemento da lista por OA: %d\n", node -> ref -> id);
     if(node != NULL){
         while(node != NULL){
 		    printf("\n===== ID %2d =====\n", node -> ref -> id);
@@ -19,6 +20,8 @@ void printDoentesOA(list_doentesOA_t *doentesOA){
 		    node = node -> next;
     	}
         printf("\n[DEBUG] Todos os elementos foram imprimidos.\n");
+    } else {
+        printf("[!] Não foi possível imprimir a lista por ordem alfabética.\n");
     }
 }
 
