@@ -1,3 +1,7 @@
+/*
+    Declaração das funções relativas à terceira opção do menu
+    >> [3] Listar todos os doentes por ordem alfabética
+*/
 #ifndef FUNCSMENU3_H
 #define FUNCSMENU3_H
 #include "../lib/listaDoentes.h"

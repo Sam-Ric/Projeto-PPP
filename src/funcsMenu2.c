@@ -13,7 +13,8 @@ void removerDoente(list_doentes_t *doentes, list_registos_t *registos){
     char input[50];
     inputFunction(input, 50);
     int id = convertToInteger(input);
-    if(verifyID(doentes, id)){
+    printf("[DEBUG] verifyID(%d) = %d\n", id, verifyID(doentes, id));
+    if(!verifyID(doentes, id)){
         printf("[!] ID inválido.\n");
     } else {
         // Remover o doente selecionado da lista dos doentes

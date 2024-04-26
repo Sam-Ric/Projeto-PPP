@@ -1,5 +1,5 @@
 /*
-    Funções diversas
+    Declaração de funções diversas
 */
 
 #ifndef FUNCS_H

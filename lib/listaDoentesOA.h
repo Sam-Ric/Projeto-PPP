@@ -1,5 +1,5 @@
 /*
-	Declaração das estruturas e das funções da lista dos doentes
+	Declaração das estruturas e das funções da lista dos doentes por ordem alfabética
 */
 
 #ifndef LISTA_DOENTES_OA_H

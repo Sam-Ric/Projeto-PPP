@@ -1,3 +1,6 @@
+/*
+	Declaração de funções e estruturas relativas à lista dos registos
+*/
 #ifndef LISTA_REGISTOS_H
 #define LISTA_REGISTOS_H
 

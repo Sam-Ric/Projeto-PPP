@@ -15,6 +15,7 @@ void novoRegisto(list_registos_t *registos, list_doentes_t *doentes){
     int id = convertToInteger(tempId);
     // Verificar se o ID é válido
     printf("ID = %d\n", id);
+    printf("ID %d: %d\n", id, verifyID(doentes, id));
     if(verifyID(doentes, id)){
         printf("Data do registo:\n");
         char data[50];
