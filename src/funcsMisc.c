@@ -82,7 +82,7 @@ void loadDoentes(list_doentes_t *list){
     fclose(ficheiroDoentes); // Fechar o ficheiro 'doentes.txt'
 }
 
-void loadRegistos(list_registos_t *list){
+void loadRegistos(list_doentes_t *list){
     // Carregar os dados do ficheiro 'registos.txt' para uma lista
     FILE * ficheiroRegistos;
     ficheiroRegistos = fopen("registos.txt", "r"); // Abrir o ficheiro 'registos.txt'
@@ -118,7 +118,14 @@ void loadRegistos(list_registos_t *list){
             if(count % 6 == 5){ // Caso se trate de uma altura, carregá-la para a variável 'altura' e inserir todos os dados na lista dos registos
                 altura = convertToInteger(buffer);
                 //printf("[DEBUG] Altura: %d\n", altura);
-                insertListaRegistos(list, id, data, tensaoMax, tensaoMin, peso, altura);
+                l_noDoentes_t *node = list -> front;
+                while(node != NULL){
+                    if(node -> id == id){
+                        insertListaRegistos(node -> registos, id, data, tensaoMax, tensaoMin, peso, altura);
+                    }
+                    node = node -> next;
+                }
+                
             }
             ++count;
         }
@@ -150,19 +157,23 @@ void updateDoentes(list_doentes_t *list){
     fclose(ficheiro);
 }
 
-void updateRegistos(list_registos_t *list){
+void updateRegistos(list_doentes_t *list){
     FILE * ficheiro;
     ficheiro = fopen("registos.txt", "w");
     if(ficheiro != NULL){
-        l_noRegistos_t *temp = list -> front;
-        while(temp != NULL){
-            fprintf(ficheiro, "%d\n", temp -> id);
-            fprintf(ficheiro, "%s\n", temp -> data);
-            fprintf(ficheiro, "%d\n", temp -> tensaoMax);
-            fprintf(ficheiro, "%d\n", temp -> tensaoMin);
-            fprintf(ficheiro, "%d\n", temp -> peso);
-            fprintf(ficheiro, "%d\n", temp -> altura);
-            temp = temp -> next;
+        l_noDoentes_t *nodeDoentes = list -> front;
+        l_noRegistos_t *nodeRegistos = nodeDoentes -> registos -> front;
+        while(nodeDoentes != NULL){
+            while(nodeRegistos != NULL){
+                fprintf(ficheiro, "%d\n", nodeRegistos -> id);
+                fprintf(ficheiro, "%s\n", nodeRegistos -> data);
+                fprintf(ficheiro, "%d\n", nodeRegistos -> tensaoMax);
+                fprintf(ficheiro, "%d\n", nodeRegistos -> tensaoMin);
+                fprintf(ficheiro, "%d\n", nodeRegistos -> peso);
+                fprintf(ficheiro, "%d\n", nodeRegistos -> altura);
+                nodeRegistos = nodeRegistos -> next;
+            }
+            nodeDoentes = nodeDoentes -> next;
         }
         printf("[DEBUG] Ficheiro 'doentes.txt' atualizado!\n");
     } else {

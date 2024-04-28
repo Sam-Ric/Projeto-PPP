@@ -14,9 +14,7 @@ int main(){
     list_doentes_t doentes;
     initListaDoentes(&doentes); // Inicializar a lista que irá armazenar os dados do ficheiro 'doentes.txt'
     loadDoentes(&doentes); // Carregar os dados do ficheiro 'doentes.txt' para a repetiva lista
-    list_registos_t registos;
-    initListaRegistos(&registos); // Inicializar a lista que irá armazenar os dados do ficheiro 'registos.txt'
-    loadRegistos(&registos); // Carregar os dados do ficheiro 'registos.txt' para a respetiva lista
+    loadRegistos(&doentes);
 
     while(status){
         printf("\n================================= MENU ==================================\n");
@@ -37,13 +35,12 @@ int main(){
             novoDoente(&doentes);
         }
         else if(menu == 2){ // Eliminar um doente existente
-            removerDoente(&doentes, &registos);
+            removerDoente(&doentes);
         }
         else if(menu == 3){ // Listar todos os doentes por ordem alfabética
             list_doentesOA_t doentesOA;
             initListaDoentesOA(&doentesOA);
             loadDoentesOA(&doentesOA, &doentes);
-            printf("[DEBUG] Elementos carregados para lista por ordem alfabética.\n");
             printDoentesOA(&doentesOA);
             clearListaDoentesOA(&doentesOA);
         }
@@ -54,11 +51,10 @@ int main(){
 
         }
         else if(menu == 6){ // Registar as tensões, o peso e a altura de um determinado doente
-            novoRegisto(&registos, &doentes);
+            novoRegisto(&doentes);
         }
         else if(menu == 0){ // Sair da aplicação
             clearListaDoentes(&doentes); // Libertar a memória alocada para a lista dos dados dos doentes
-            clearListaRegistos(&registos); // Libertar a memória alocada para a lista dos registos dos doentes
             status = 0; // Terminar a execução do ciclo while
             printf("\n[DEBUG] Execução terminada.\n");
         }

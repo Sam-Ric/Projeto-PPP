@@ -7,7 +7,7 @@
 #include "../lib/listaRegistos.h"
 #include "../lib/funcsMisc.h"
 
-void novoRegisto(list_registos_t *registos, list_doentes_t *doentes){
+void novoRegisto(list_doentes_t *list){
     // Pedir ao utilizador os dados para criar um novo registo
     printf("\nID do doente:\n");
     char tempId[50];
@@ -15,8 +15,8 @@ void novoRegisto(list_registos_t *registos, list_doentes_t *doentes){
     int id = convertToInteger(tempId);
     // Verificar se o ID é válido
     printf("ID = %d\n", id);
-    printf("ID %d: %d\n", id, verifyID(doentes, id));
-    if(verifyID(doentes, id)){
+    printf("ID %d: %d\n", id, verifyID(list, id));
+    if(verifyID(list, id)){
         printf("Data do registo:\n");
         char data[50];
         inputFunction(data, 50);
@@ -41,11 +41,16 @@ void novoRegisto(list_registos_t *registos, list_doentes_t *doentes){
         inputFunction(tempAltura, 50);
         int altura = convertToInteger(tempAltura);
 
-        // Adicionar o novo doente à lista
-        insertListaRegistos(registos, id, data, tensaoMax, tensaoMin, peso, altura);
+        // Adicionar o novo registo à lista
+        l_noDoentes_t *node = list -> front;
+        while(node != NULL){
+            if(node -> id == id) break;
+            node = node -> next;
+        }
+        insertListaRegistos(node -> registos, id, data, tensaoMax, tensaoMin, peso, altura);
 
         // Atualizar o ficheiro 'doentes.txt'
-        updateRegistos(registos);
+        updateRegistos(list);
     } else {
         printf("[!] Não foi possível selecionar o doente.\n");
     }

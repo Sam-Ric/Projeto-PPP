@@ -5,6 +5,6 @@
 #ifndef FUNCSMENU6_H
 #define FUNCSMENU6_H
 
-void novoRegisto(list_registos_t *registos, list_doentes_t *doentes); // Função que cria um novo registo de um doente
+void novoRegisto(list_doentes_t *list); // Função que cria um novo registo de um doente
 
 #endif
