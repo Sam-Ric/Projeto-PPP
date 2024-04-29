@@ -162,7 +162,7 @@ void updateRegistos(list_doentes_t *list){
     ficheiro = fopen("registos.txt", "w");
     if(ficheiro != NULL){
         l_noDoentes_t *nodeDoentes = list -> front;
-        if(nodeDoentes -> registos -> front != NULL){
+        if(nodeDoentes != NULL){
             l_noRegistos_t *nodeRegistos = nodeDoentes -> registos -> front;
             while(nodeDoentes != NULL){
                 while(nodeRegistos != NULL){
@@ -188,6 +188,7 @@ int verifyID(list_doentes_t *list, int id){
     l_noDoentes_t *node = list -> front;
     for(int i = 0; i < (int)list -> num_elems; ++i){
         if(id == node -> id) return 1;
+        node = node -> next;
     }
     return 0;
 }
