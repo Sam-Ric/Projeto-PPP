@@ -13,7 +13,7 @@ typedef struct l_noDoentes { // Estrutura de um node da lista dos doentes
 	char num_cc[50];
 	char contacto[50];
 	char email[50];
-	list_registos_t *registos;
+	list_registos_t registos;
 	struct l_noDoentes *next;
 } l_noDoentes_t;
 

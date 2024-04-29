@@ -15,5 +15,6 @@ void updateDoentes(list_doentes_t *list); // Função que atualiza o ficheiro 'd
 void updateRegistos(list_doentes_t *list); // Função que atualiza o ficheiro 'registos.txt'
 int verifyID(list_doentes_t *list, int id); // Função que verifica a existência de um ID
 int isInteger(char *str); // Função que verifica se há um inteiro armazenado numa string
+void listNomes(list_doentes_t *list); // Função que imprime os nomes e IDs de todos os doentes
 
 #endif

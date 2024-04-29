@@ -12,6 +12,7 @@ void removerDoente(list_doentes_t *list){
     if(list -> num_elems == 0){
         printf("[!] Não há doentes para eliminar.\n");
     } else {
+        listNomes(list);
         printf("\nInsira o ID do doente que pretende remover:\n");
         char input[50];
         inputFunction(input, 50);

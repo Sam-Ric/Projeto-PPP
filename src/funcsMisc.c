@@ -32,7 +32,7 @@ void inputFunction(char str[], int size){
         while((ch = getchar()) != EOF && ch != '\n')
             ;
     }
-    printf("[DEBUG] Input = %s\n", str);
+    //printf("[DEBUG] Input = %s\n", str);
 }
 
 void loadDoentes(list_doentes_t *list){
@@ -121,7 +121,7 @@ void loadRegistos(list_doentes_t *list){
                 l_noDoentes_t *node = list -> front;
                 while(node != NULL){
                     if(node -> id == id){
-                        insertListaRegistos(node -> registos, id, data, tensaoMax, tensaoMin, peso, altura);
+                        insertListaRegistos(&(node -> registos), id, data, tensaoMax, tensaoMin, peso, altura);
                     }
                     node = node -> next;
                 }
@@ -163,8 +163,9 @@ void updateRegistos(list_doentes_t *list){
     if(ficheiro != NULL){
         l_noDoentes_t *nodeDoentes = list -> front;
         if(nodeDoentes != NULL){
-            l_noRegistos_t *nodeRegistos = nodeDoentes -> registos -> front;
             while(nodeDoentes != NULL){
+                list_registos_t *listRegistos = &(nodeDoentes -> registos);
+                l_noRegistos_t *nodeRegistos = listRegistos -> front;
                 while(nodeRegistos != NULL){
                     fprintf(ficheiro, "%d\n", nodeRegistos -> id);
                     fprintf(ficheiro, "%s\n", nodeRegistos -> data);
@@ -176,7 +177,7 @@ void updateRegistos(list_doentes_t *list){
                 }
                 nodeDoentes = nodeDoentes -> next;
             }
-            printf("[DEBUG] Ficheiro 'doentes.txt' atualizado!\n");
+            printf("[DEBUG] Ficheiro 'registos.txt' atualizado!\n");
         }
     } else {
         printf("[!] Não foi possível atualizar o ficheiro.\n");
@@ -199,5 +200,15 @@ int isInteger(char *str){
         if(str[i] < '0' || str[i] > '9') return 0;
     }
     return 1;
+}
+
+void listNomes(list_doentes_t *list){
+    l_noDoentes_t *node = list -> front;
+    printf("\n============================== DOENTES ===============================");
+    printf("\n ID | NOME\n");
+    while(node != NULL){
+        printf("%3d | %s\n", node -> id, node -> nome);
+        node = node -> next;
+    }
 }
 

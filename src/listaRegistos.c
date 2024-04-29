@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../lib/listaRegistos.h"
+#include "../lib/listaDoentes.h"
 
 void initListaRegistos(list_registos_t *list){
 	list -> num_elems = 0;
@@ -70,4 +71,18 @@ void removeListaRegistos(list_registos_t *list, int id){
 		list -> num_elems--;
     }
 	printf("[DEBUG] Registo removido da lista!\n");
+}
+
+void printRegistos(list_registos_t *list){
+	l_noRegistos_t *nodeRegistos = list -> front;
+    while(nodeRegistos != NULL){
+	    printf("\n===== ID %2d =====\n", nodeRegistos -> id);
+    	printf(">> %s\n", nodeRegistos -> data);
+  		printf(">> %d\n", nodeRegistos -> tensaoMax);
+  		printf(">> %d\n", nodeRegistos -> tensaoMin);
+  		printf(">> %d\n", nodeRegistos -> peso);
+   		printf(">> %d\n", nodeRegistos -> altura);
+   		nodeRegistos = nodeRegistos -> next;
+	}
+	printf("\n[DEBUG] Todos os elementos foram imprimidos.\n");
 }

@@ -8,14 +8,13 @@
 #include "../lib/funcsMisc.h"
 
 void novoRegisto(list_doentes_t *list){
+    listNomes(list);
     // Pedir ao utilizador os dados para criar um novo registo
     printf("\nID do doente:\n");
     char tempId[50];
     inputFunction(tempId, 50);
     int id = convertToInteger(tempId);
     // Verificar se o ID é válido
-    printf("ID = %d\n", id);
-    printf("ID %d: %d\n", id, verifyID(list, id));
     if(verifyID(list, id)){
         printf("Data do registo:\n");
         char data[50];
@@ -47,7 +46,15 @@ void novoRegisto(list_doentes_t *list){
             if(node -> id == id) break;
             node = node -> next;
         }
-        insertListaRegistos(node -> registos, id, data, tensaoMax, tensaoMin, peso, altura);
+        insertListaRegistos(&(node -> registos), id, data, tensaoMax, tensaoMin, peso, altura);
+
+        // Imprimir todos os elementos dos registos
+        l_noDoentes_t *nodeDoentes = list -> front;
+        while(nodeDoentes != NULL){
+            list_registos_t *listRegistos = &(nodeDoentes -> registos);
+            printRegistos(listRegistos);
+            nodeDoentes = nodeDoentes -> next;
+        }
 
         // Atualizar o ficheiro 'doentes.txt'
         updateRegistos(list);

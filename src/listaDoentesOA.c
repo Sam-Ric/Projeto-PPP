@@ -48,7 +48,7 @@ void insertListaDoentesOA(list_doentesOA_t *list, l_noDoentes_t *elem){
 void searchListaDoentesOA(list_doentesOA_t *list, l_noDoentes_t *elem, l_noDoentesOA_t **prev, l_noDoentesOA_t **cur){
 	*prev = NULL;
 	*cur = list -> front;
-	while(*cur != NULL && strcmp(elem -> nome, (*cur) -> ref -> nome) < 0){
+	while(*cur != NULL && strcmp(elem -> nome, (*cur) -> ref -> nome) > 0){
 		*prev = *cur;
 		*cur = (*cur) -> next;
 	}

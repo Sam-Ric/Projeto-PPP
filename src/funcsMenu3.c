@@ -10,13 +10,10 @@ void printDoentesOA(list_doentesOA_t *doentesOA){
 	l_noDoentesOA_t *node = doentesOA -> front;
     printf("[DEBUG] Primeiro elemento da lista por OA: %d\n", node -> ref -> id);
     if(node != NULL){
+        printf("\n================ DOENTES POR ORDEM ALFABÉTICA ================\n");
+        printf(" ID | NOME\n");
         while(node != NULL){
-		    printf("\n===== ID %2d =====\n", node -> ref -> id);
-            printf("Nome:\n>> %s\n", node -> ref -> nome);
-            printf("Data de nascimento:\n>> %s\n", node -> ref -> data_de_nascimento);
-            printf("Cartão de cidadão:\n>> %s\n", node -> ref -> num_cc);
-            printf("Telefone:\n>> %s\n", node -> ref -> contacto);
-            printf("Email:\n>> %s\n", node -> ref -> email);
+            printf("%3d | %-s\n", node -> ref -> id, node -> ref -> nome);
 		    node = node -> next;
     	}
         printf("\n[DEBUG] Todos os elementos foram imprimidos.\n");

@@ -21,7 +21,7 @@ void clearListaDoentes(list_doentes_t *list){
 	while(list -> front != NULL){
 		node = list -> front;
 		list -> front = list -> front -> next;
-		free(node -> registos);
+		clearListaRegistos(&(node -> registos));
 		free(node);
 	}
 	initListaDoentes(list);
@@ -38,8 +38,7 @@ void insertListaDoentes(list_doentes_t *list, int id, char nome[50], char data_d
         strcpy(node -> num_cc, num_cc);
         strcpy(node -> contacto, contacto);
         strcpy(node -> email, email);
-		node -> registos = (list_registos_t*)malloc(sizeof(list_registos_t));
-		initListaRegistos(node -> registos); // Inicializar a lista dos registos do doente
+		initListaRegistos(&(node -> registos)); // Inicializar a lista dos registos do doente
 		searchListaDoentes(list, id, &prev, &cur); // Procurar o local correto para inserir o nó criado
 		// Inserir o nó na lista dos doentes
 		if(prev != NULL){
@@ -71,7 +70,7 @@ void removeListaDoentes(list_doentes_t *list, int id){
             prev -> next = cur -> next;
         else
             list -> front = cur -> next;
-		clearListaRegistos(cur -> registos);
+		clearListaRegistos(&(cur -> registos));
 		free(cur);
 		list -> num_elems--;
     }
