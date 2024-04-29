@@ -38,6 +38,7 @@ void insertListaDoentes(list_doentes_t *list, int id, char nome[50], char data_d
         strcpy(node -> num_cc, num_cc);
         strcpy(node -> contacto, contacto);
         strcpy(node -> email, email);
+		node -> registos = (list_registos_t*)malloc(sizeof(list_registos_t));
 		initListaRegistos(node -> registos); // Inicializar a lista dos registos do doente
 		searchListaDoentes(list, id, &prev, &cur); // Procurar o local correto para inserir o nó criado
 		// Inserir o nó na lista dos doentes

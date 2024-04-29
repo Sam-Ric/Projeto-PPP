@@ -162,20 +162,22 @@ void updateRegistos(list_doentes_t *list){
     ficheiro = fopen("registos.txt", "w");
     if(ficheiro != NULL){
         l_noDoentes_t *nodeDoentes = list -> front;
-        l_noRegistos_t *nodeRegistos = nodeDoentes -> registos -> front;
-        while(nodeDoentes != NULL){
-            while(nodeRegistos != NULL){
-                fprintf(ficheiro, "%d\n", nodeRegistos -> id);
-                fprintf(ficheiro, "%s\n", nodeRegistos -> data);
-                fprintf(ficheiro, "%d\n", nodeRegistos -> tensaoMax);
-                fprintf(ficheiro, "%d\n", nodeRegistos -> tensaoMin);
-                fprintf(ficheiro, "%d\n", nodeRegistos -> peso);
-                fprintf(ficheiro, "%d\n", nodeRegistos -> altura);
-                nodeRegistos = nodeRegistos -> next;
+        if(nodeDoentes -> registos -> front != NULL){
+            l_noRegistos_t *nodeRegistos = nodeDoentes -> registos -> front;
+            while(nodeDoentes != NULL){
+                while(nodeRegistos != NULL){
+                    fprintf(ficheiro, "%d\n", nodeRegistos -> id);
+                    fprintf(ficheiro, "%s\n", nodeRegistos -> data);
+                    fprintf(ficheiro, "%d\n", nodeRegistos -> tensaoMax);
+                    fprintf(ficheiro, "%d\n", nodeRegistos -> tensaoMin);
+                    fprintf(ficheiro, "%d\n", nodeRegistos -> peso);
+                    fprintf(ficheiro, "%d\n", nodeRegistos -> altura);
+                    nodeRegistos = nodeRegistos -> next;
+                }
+                nodeDoentes = nodeDoentes -> next;
             }
-            nodeDoentes = nodeDoentes -> next;
+            printf("[DEBUG] Ficheiro 'doentes.txt' atualizado!\n");
         }
-        printf("[DEBUG] Ficheiro 'doentes.txt' atualizado!\n");
     } else {
         printf("[!] Não foi possível atualizar o ficheiro.\n");
     }
