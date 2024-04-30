@@ -8,7 +8,6 @@
 
 void printDoentesOA(list_doentesOA_t *doentesOA){
 	l_noDoentesOA_t *node = doentesOA -> front;
-    printf("[DEBUG] Primeiro elemento da lista por OA: %d\n", node -> ref -> id);
     if(node != NULL){
         printf("\n================ DOENTES POR ORDEM ALFABÉTICA ================\n");
         printf(" ID | NOME\n");

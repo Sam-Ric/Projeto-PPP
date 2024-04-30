@@ -7,7 +7,7 @@
 #include "../lib/listaDoentes.h"
 #include "../lib/listaDoentesOA.h"
 
-void printDoentesOA(list_doentesOA_t *list);
-void loadDoentesOA(list_doentesOA_t *doentesOA, list_doentes_t *doentes);
+void printDoentesOA(list_doentesOA_t *list); // Função que imprime todos os doentes na consola, por ordem alfabética
+void loadDoentesOA(list_doentesOA_t *doentesOA, list_doentes_t *doentes); // Função que armazena ponteiros para os doentes na lista dos doentes, mas ordena-os por ordem alfabética
 
 #endif

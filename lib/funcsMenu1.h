@@ -5,6 +5,6 @@
 #ifndef FUNCSMENU1_H
 #define FUNCSMENU1_H
 
-void novoDoente(list_doentes_t *list);
+void novoDoente(list_doentes_t *list); // Função para inserir um novo doente na lista dos doentes e no ficheiro 'doentes.txt'
 
 #endif
