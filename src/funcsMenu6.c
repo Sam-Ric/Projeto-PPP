@@ -15,6 +15,7 @@ void novoRegisto(list_doentes_t *list){
         // Pedir ao utilizador os dados para criar um novo registo
         printf("\nID do doente:\n");
         char tempId[50];
+        printf(">> ");
         inputFunction(tempId, 50);
         int id = convertToInteger(tempId);
         // Verificar se o ID é válido
@@ -24,21 +25,21 @@ void novoRegisto(list_doentes_t *list){
             char dia[50] = "VOID";
             char mes[50] = "VOID";
             char ano[50] = "VOID";
-            printf("- Dia:\n");
+            printf("  - Dia:\n");
             while(!isInteger(dia) || convertToInteger(dia) < 1 || convertToInteger(dia) > 31){
-                printf("  "); // (Formatação do texto)
+                printf("  >> "); // (Formatação do texto)
                 inputFunction(dia, 50);
                 if(!isInteger(dia) || convertToInteger(dia) < 1 || convertToInteger(dia) > 31) printf("[!] Insira um dia válido.\n");
             }
-            printf("- Mês:\n");
+            printf("  - Mês:\n");
             while(!isInteger(mes) || convertToInteger(mes) < 1 || convertToInteger(mes) > 12){
-                printf("  "); // (Formatação do texto)
+                printf("  >> "); // (Formatação do texto)
                 inputFunction(mes, 50);
                 if(!isInteger(mes) || convertToInteger(mes) < 1 || convertToInteger(mes) > 12) printf("[!] Insira um mês válido.\n");
             }
-            printf("- Ano:\n");
+            printf("  - Ano:\n");
             while(!isInteger(ano) || convertToInteger(ano) < 1900 || convertToInteger(ano) > 2024){
-                printf("  "); // (Formatação do texto)
+                printf("  >> "); // (Formatação do texto)
                 inputFunction(ano, 50);
                 if(!isInteger(ano) || convertToInteger(ano) < 1900 || convertToInteger(ano) > 2024) printf("[!] Insira um ano válido.\n");
             }
@@ -58,12 +59,12 @@ void novoRegisto(list_doentes_t *list){
             inputFunction(tempTensaoMin, 50);
             int tensaoMin = convertToInteger(tempTensaoMin);
 
-            printf("Peso:\n");
+            printf("Peso:\n>> ");
             char tempPeso[50];
             inputFunction(tempPeso, 50);
             int peso = convertToInteger(tempPeso);
 
-            printf("Altura:\n");
+            printf("Altura:\n>> ");
             char tempAltura[50];
             inputFunction(tempAltura, 50);
             int altura = convertToInteger(tempAltura);

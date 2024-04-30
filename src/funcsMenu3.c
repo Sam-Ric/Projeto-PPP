@@ -17,7 +17,7 @@ void printDoentesOA(list_doentesOA_t *doentesOA){
     	}
         printf("\n[DEBUG] Todos os elementos foram imprimidos.\n");
     } else {
-        printf("[!] Não foi possível imprimir a lista por ordem alfabética.\n");
+        printf("[!] Não há elementos para imprimir.\n");
     }
 }
 

@@ -28,6 +28,7 @@ int main(){
         
         // Input do utilizador
         char s[5];
+        printf(">> ");
         inputFunction(s, 5);
         int menu = convertToInteger(s);
 

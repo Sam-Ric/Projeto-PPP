@@ -21,7 +21,6 @@ int convertToInteger(char *str){
 }
 
 void inputFunction(char str[], int size){
-    printf(">> ");
     fgets(str, size, stdin);
     int len = strlen(str);
     if(str[len-1] == '\n'){
@@ -212,3 +211,10 @@ void listNomes(list_doentes_t *list){
     }
 }
 
+int isLetter(char *ch){
+    if((ch[0] >= 'A' && ch[0] <= 'Z') || (ch[0] >= 'a' && ch[0] <= 'z')){
+        if(ch[0] >= 'a' && ch[0] <= 'z') ch[0] -= 32;
+        return 1;
+    }
+    return 0;
+}
