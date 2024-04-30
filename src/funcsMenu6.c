@@ -20,6 +20,7 @@ void novoRegisto(list_doentes_t *list){
         int id = convertToInteger(tempId);
         // Verificar se o ID é válido
         if(verifyID(list, id)){
+            // Obter a data do registo
             printf("Data do registo:\n");
             char data[50] = "";
             char dia[50] = "VOID";
@@ -49,24 +50,44 @@ void novoRegisto(list_doentes_t *list){
             strcat(data, "/");
             strcat(data, ano);
 
+            // Obter o valor da tensão máxima
             printf("Tensão máxima:\n");
-            char tempTensaoMax[50];
-            inputFunction(tempTensaoMax, 50);
+            char tempTensaoMax[50] = "VOID";
+            while(!isInteger(tempTensaoMax)){
+                printf(">> "); // (Formatação do texto)
+                inputFunction(tempTensaoMax, 50);
+                if(!isInteger(tempTensaoMax)) printf("[!] Insira um valor válido.\n");
+            }
             int tensaoMax = convertToInteger(tempTensaoMax);
 
+            // Obter o valor da tensão mínima
             printf("Tensão mínima:\n");
-            char tempTensaoMin[50];
-            inputFunction(tempTensaoMin, 50);
+            char tempTensaoMin[50] = "VOID";
+            while(!isInteger(tempTensaoMin)){
+                printf(">> "); // (Formatação do texto)
+                inputFunction(tempTensaoMin, 50);
+                if(!isInteger(tempTensaoMin)) printf("[!] Insira um valor válido.\n");
+            }
             int tensaoMin = convertToInteger(tempTensaoMin);
 
-            printf("Peso:\n>> ");
-            char tempPeso[50];
-            inputFunction(tempPeso, 50);
+            // Obter o valor do peso
+            printf("Peso:\n");
+            char tempPeso[50] = "VOID";
+            while(!isInteger(tempPeso)){
+                printf(">> "); // (Formatação do texto)
+                inputFunction(tempPeso, 50);
+                if(!isInteger(tempPeso)) printf("[!] Insira um valor válido.\n");
+            }
             int peso = convertToInteger(tempPeso);
 
-            printf("Altura:\n>> ");
-            char tempAltura[50];
-            inputFunction(tempAltura, 50);
+            // Obter o valor da altura
+            printf("Altura:\n");
+            char tempAltura[50] = "VOID";
+            while(!isInteger(tempAltura)){
+                printf(">> "); // (Formatação do texto)
+                inputFunction(tempAltura, 50);
+                if(!isInteger(tempAltura)) printf("[!] Insira um valor válido.\n");
+            }
             int altura = convertToInteger(tempAltura);
 
             // Adicionar o novo registo à lista
@@ -75,14 +96,6 @@ void novoRegisto(list_doentes_t *list){
                 node = node -> next;
             }
             insertListaRegistos(&(node -> registos), id, data, tensaoMax, tensaoMin, peso, altura);
-
-            // Imprimir todos os elementos dos registos
-            l_noDoentes_t *nodeDoentes = list -> front;
-            while(nodeDoentes != NULL){
-                list_registos_t *listRegistos = &(nodeDoentes -> registos);
-                printRegistos(listRegistos);
-                nodeDoentes = nodeDoentes -> next;
-            }   
 
             // Atualizar o ficheiro 'doentes.txt'
             updateRegistos(list);
