@@ -9,15 +9,15 @@
 void printDoentesOA(list_doentesOA_t *doentesOA){
 	l_noDoentesOA_t *node = doentesOA -> front;
     if(node != NULL){
-        printf("\n================ DOENTES POR ORDEM ALFABÉTICA ================\n");
-        printf(" ID | NOME\n");
+        printf("\n\033[90m================ \033[37mDOENTES POR ORDEM ALFABÉTICA \033[90m================\033[0m\n");
+        printf(" ID \033[90m|\033[0m NOME\n");
         while(node != NULL){
-            printf("%3d | %-s\n", node -> ref -> id, node -> ref -> nome);
+            printf("%3d \033[90m|\033[0m %-s\n", node -> ref -> id, node -> ref -> nome);
 		    node = node -> next;
     	}
         printf("\n[DEBUG] Todos os elementos foram imprimidos.\n");
     } else {
-        printf("[!] Não há elementos para imprimir.\n");
+        printf("\033[31m[!]\033[0m Não há elementos para imprimir.\n");
     }
 }
 

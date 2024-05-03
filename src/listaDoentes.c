@@ -27,14 +27,16 @@ void clearListaDoentes(list_doentes_t *list){
 	initListaDoentes(list);
 }
 
-void insertListaDoentes(list_doentes_t *list, int id, char nome[50], char data_de_nascimento[50], char num_cc[50], char contacto[50], char email[50]){
+void insertListaDoentes(list_doentes_t *list, int id, char nome[50], data_doentes data_de_nascimento, char num_cc[50], char contacto[50], char email[50]){
 	l_noDoentes_t *node = (l_noDoentes_t*)malloc(sizeof(l_noDoentes_t));
 	l_noDoentes_t *prev, *cur;
 	if(node != NULL){
 		// Inserir as informações dadas num nó
 		node -> id = id;
         strcpy(node -> nome, nome);
-        strcpy(node -> data_de_nascimento, data_de_nascimento);
+		node -> data_de_nascimento.dia = data_de_nascimento.dia;
+		node -> data_de_nascimento.mes = data_de_nascimento.mes;
+		node -> data_de_nascimento.ano = data_de_nascimento.ano;
         strcpy(node -> num_cc, num_cc);
         strcpy(node -> contacto, contacto);
         strcpy(node -> email, email);

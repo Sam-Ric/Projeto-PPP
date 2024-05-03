@@ -22,7 +22,7 @@ void novoRegisto(list_doentes_t *list){
         if(verifyID(list, id)){
             // Obter a data do registo
             printf("Data do registo:\n");
-            char data[50] = "";
+            data_registos data_registo;
             char dia[50] = "VOID";
             char mes[50] = "VOID";
             char ano[50] = "VOID";
@@ -30,25 +30,23 @@ void novoRegisto(list_doentes_t *list){
             while(!isInteger(dia) || convertToInteger(dia) < 1 || convertToInteger(dia) > 31){
                 printf("  >> "); // (Formatação do texto)
                 inputFunction(dia, 50);
-                if(!isInteger(dia) || convertToInteger(dia) < 1 || convertToInteger(dia) > 31) printf("[!] Insira um dia válido.\n");
+                if(!isInteger(dia) || convertToInteger(dia) < 1 || convertToInteger(dia) > 31) printf("\033[31m[!]\033[0m Insira um dia válido.\n");
             }
             printf("  - Mês:\n");
             while(!isInteger(mes) || convertToInteger(mes) < 1 || convertToInteger(mes) > 12){
                 printf("  >> "); // (Formatação do texto)
                 inputFunction(mes, 50);
-                if(!isInteger(mes) || convertToInteger(mes) < 1 || convertToInteger(mes) > 12) printf("[!] Insira um mês válido.\n");
+                if(!isInteger(mes) || convertToInteger(mes) < 1 || convertToInteger(mes) > 12) printf("\033[31m[!]\033[0m Insira um mês válido.\n");
             }
             printf("  - Ano:\n");
             while(!isInteger(ano) || convertToInteger(ano) < 1900 || convertToInteger(ano) > 2024){
                 printf("  >> "); // (Formatação do texto)
                 inputFunction(ano, 50);
-                if(!isInteger(ano) || convertToInteger(ano) < 1900 || convertToInteger(ano) > 2024) printf("[!] Insira um ano válido.\n");
+                if(!isInteger(ano) || convertToInteger(ano) < 1900 || convertToInteger(ano) > 2024) printf("\033[31m[!]\033[0m Insira um ano válido.\n");
             }
-            strcat(data, dia);
-            strcat(data, "/");
-            strcat(data, mes);
-            strcat(data, "/");
-            strcat(data, ano);
+            data_registo.dia = convertToInteger(dia);
+            data_registo.mes = convertToInteger(mes);
+            data_registo.ano = convertToInteger(ano);
 
             // Obter o valor da tensão máxima
             printf("Tensão máxima:\n");
@@ -56,7 +54,7 @@ void novoRegisto(list_doentes_t *list){
             while(!isInteger(tempTensaoMax)){
                 printf(">> "); // (Formatação do texto)
                 inputFunction(tempTensaoMax, 50);
-                if(!isInteger(tempTensaoMax)) printf("[!] Insira um valor válido.\n");
+                if(!isInteger(tempTensaoMax)) printf("\033[31m[!]\033[0m Insira um valor válido.\n");
             }
             int tensaoMax = convertToInteger(tempTensaoMax);
 
@@ -66,7 +64,7 @@ void novoRegisto(list_doentes_t *list){
             while(!isInteger(tempTensaoMin)){
                 printf(">> "); // (Formatação do texto)
                 inputFunction(tempTensaoMin, 50);
-                if(!isInteger(tempTensaoMin)) printf("[!] Insira um valor válido.\n");
+                if(!isInteger(tempTensaoMin)) printf("\033[31m[!]\033[0m Insira um valor válido.\n");
             }
             int tensaoMin = convertToInteger(tempTensaoMin);
 
@@ -76,7 +74,7 @@ void novoRegisto(list_doentes_t *list){
             while(!isInteger(tempPeso)){
                 printf(">> "); // (Formatação do texto)
                 inputFunction(tempPeso, 50);
-                if(!isInteger(tempPeso)) printf("[!] Insira um valor válido.\n");
+                if(!isInteger(tempPeso)) printf("\033[31m[!]\033[0m Insira um valor válido.\n");
             }
             int peso = convertToInteger(tempPeso);
 
@@ -86,7 +84,7 @@ void novoRegisto(list_doentes_t *list){
             while(!isInteger(tempAltura)){
                 printf(">> "); // (Formatação do texto)
                 inputFunction(tempAltura, 50);
-                if(!isInteger(tempAltura)) printf("[!] Insira um valor válido.\n");
+                if(!isInteger(tempAltura)) printf("\033[31m[!]\033[0m Insira um valor válido.\n");
             }
             int altura = convertToInteger(tempAltura);
 
@@ -95,15 +93,15 @@ void novoRegisto(list_doentes_t *list){
                 if(node -> id == id) break;
                 node = node -> next;
             }
-            insertListaRegistos(&(node -> registos), id, data, tensaoMax, tensaoMin, peso, altura);
+            insertListaRegistos(&(node -> registos), id, data_registo, tensaoMax, tensaoMin, peso, altura);
 
             // Atualizar o ficheiro 'doentes.txt'
             updateRegistos(list);
         } else {
-            printf("[!] Não foi possível selecionar o doente.\n");
+            printf("\033[31m[!]\033[0m Não foi possível selecionar o doente.\n");
         }
     } else {
-        printf("[!] Não há doentes registados.\n");
+        printf("\033[31m[!]\033[0m Não há doentes registados.\n");
     }
     
 }

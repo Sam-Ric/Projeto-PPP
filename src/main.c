@@ -17,14 +17,14 @@ int main(){
     loadRegistos(&doentes);
 
     while(status){
-        printf("\n================================= MENU ==================================\n");
-        printf("[1] Introduzir dados de um novo doente\n");
-        printf("[2] Eliminar um doente existente\n");
-        printf("[3] Listar todos os doentes por ordem alfabética\n");
-        printf("[4] Listar os doentes com tensões máximas acima de um determinado valor\n");
-        printf("[5] Apresentar toda a informação de um determinado doente\n");
-        printf("[6] Registar as tensões, o peso e a altura de um determinado doente\n");
-        printf("[0] Sair da aplicação\n");
+        printf("\n\33[90m================================= \033[37mMENU\033[0m \033[90m==================================\033[0m\n");
+        printf("\33[90m[1]\033[0m Introduzir dados de um novo doente\n");
+        printf("\33[90m[2]\033[0m Eliminar um doente existente\n");
+        printf("\33[90m[3]\033[0m Listar todos os doentes por ordem alfabética\n");
+        printf("\33[90m[4]\033[0m Listar os doentes com tensões máximas acima de um determinado valor\n");
+        printf("\33[90m[5]\033[0m Apresentar toda a informação de um determinado doente\n");
+        printf("\33[90m[6]\033[0m Registar as tensões, o peso e a altura de um determinado doente\n");
+        printf("\33[90m[0]\033[0m Sair da aplicação\n");
         
         // Input do utilizador
         char s[5];
@@ -60,7 +60,7 @@ int main(){
             printf("\n[DEBUG] Execução terminada.\n");
         }
         else { // Inputs inválidos.
-            printf("\n[!] Opção inválida.\n");
+            printf("\n\033[31m[!]\033[0m Opção inválida.\n");
         }
     }
     return 0;

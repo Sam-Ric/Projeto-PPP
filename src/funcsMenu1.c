@@ -29,7 +29,7 @@ void novoDoente(list_doentes_t *list){
     inputFunction(nome, 50);
     
     printf("Data de nascimento:\n");
-    char data_de_nascimento[50] = "";
+    data_doentes data_de_nascimento;
     char dia[50] = "VOID";
     char mes[50] = "VOID";
     char ano[50] = "VOID";
@@ -37,25 +37,23 @@ void novoDoente(list_doentes_t *list){
     while(!isInteger(dia) || convertToInteger(dia) < 1 || convertToInteger(dia) > 31){
         printf("  >> "); // (Formatação do texto)
         inputFunction(dia, 50);
-        if(!isInteger(dia) || convertToInteger(dia) < 1 || convertToInteger(dia) > 31) printf("[!] Insira um dia válido.\n");
+        if(!isInteger(dia) || convertToInteger(dia) < 1 || convertToInteger(dia) > 31) printf("\033[31m[!]\033[0m Insira um dia válido.\n");
     }
     printf("  - Mês:\n");
     while(!isInteger(mes) || convertToInteger(mes) < 1 || convertToInteger(mes) > 12){
         printf("  >> "); // (Formatação do texto)
         inputFunction(mes, 50);
-        if(!isInteger(mes) || convertToInteger(mes) < 1 || convertToInteger(mes) > 12) printf("[!] Insira um mês válido.\n");
+        if(!isInteger(mes) || convertToInteger(mes) < 1 || convertToInteger(mes) > 12) printf("\033[31m[!]\033[0m Insira um mês válido.\n");
     }
     printf("  - Ano:\n");
     while(!isInteger(ano) || convertToInteger(ano) < 1900 || convertToInteger(ano) > 2024){
         printf("  >> "); // (Formatação do texto)
         inputFunction(ano, 50);
-        if(!isInteger(ano) || convertToInteger(ano) < 1900 || convertToInteger(ano) > 2024) printf("[!] Insira um ano válido.\n");
+        if(!isInteger(ano) || convertToInteger(ano) < 1900 || convertToInteger(ano) > 2024) printf("\033[31m[!]\033[0m Insira um ano válido.\n");
     }
-    strcat(data_de_nascimento, dia);
-    strcat(data_de_nascimento, "/");
-    strcat(data_de_nascimento, mes);
-    strcat(data_de_nascimento, "/");
-    strcat(data_de_nascimento, ano);
+    data_de_nascimento.dia = convertToInteger(dia);
+    data_de_nascimento.mes = convertToInteger(mes);
+    data_de_nascimento.ano = convertToInteger(ano);
 
     printf("Cartão de cidadão:\n");
     char num_cc[50];
@@ -68,7 +66,7 @@ void novoDoente(list_doentes_t *list){
                 validCC = 0;
             } else validCC = 1;
         }
-        if(!validCC) printf("[!] Insira um número de identificação válido.\n");
+        if(!validCC) printf("\033[31m[!]\033[0m Insira um número de identificação válido.\n");
     }
     
 
@@ -77,7 +75,7 @@ void novoDoente(list_doentes_t *list){
     while(!isInteger(contacto) || (int)strlen(contacto) != 9){
         printf(">> _________\r>> ");
         inputFunction(contacto, 50);
-        if(!isInteger(contacto) || (int)strlen(contacto) != 9) printf("[!] Insira um contacto válido.\n");
+        if(!isInteger(contacto) || (int)strlen(contacto) != 9) printf("\033[31m[!]\033[0m Insira um contacto válido.\n");
     }
 
     printf("Email:\n>> ");

@@ -43,7 +43,8 @@ void loadDoentes(list_doentes_t *list){
     if(ficheiroDoentes != NULL){
         // Variáveis que irão armazenar os diferentes tipos de dados do ficheiro
         int id;
-        char nome[50], data_de_nascimento[50], num_cc[50], email[50], contacto[50];
+        char nome[50], num_cc[50], email[50], contacto[50];
+        data_doentes data_de_nascimento;
         while(fgets(buffer, 50, ficheiroDoentes)){ // Percorrer o ficheiro todo, uma linha de cada vez
             int len = strlen(buffer);
             buffer[len-1] = '\0';
@@ -56,8 +57,13 @@ void loadDoentes(list_doentes_t *list){
                 //printf("[DEBUG] Nome: %s\n", nome);
             }
             if(count % 6 == 2){ // Caso se trate de uma data de nascimento, carregá-la para a variável 'data_de_nascimento'
-                strcpy(data_de_nascimento, buffer);
-                //printf("[DEBUG] Data de nascimento: %s\n", data_de_nascimento);
+                char *dia = strtok(buffer, "/");
+                data_de_nascimento.dia = convertToInteger(dia);
+                char *mes = strtok(NULL, "/");
+                data_de_nascimento.mes = convertToInteger(mes);
+                char *ano = strtok(NULL, "/");
+                data_de_nascimento.ano = convertToInteger(ano);
+                //printf("[DEBUG] Data de nascimento: %s/%s/%s\n", dia, mes, ano);
             }
             if(count % 6 == 3){ // Caso se trate de um número de CC, carregá-lo para a variável 'num_cc'
                 strcpy(num_cc, buffer);
@@ -90,7 +96,7 @@ void loadRegistos(list_doentes_t *list){
     if(ficheiroRegistos != NULL){
         // Variáveis que irão armazenar os diferentes tipos de dados do ficheiro
         int id, tensaoMax, tensaoMin, peso, altura;
-        char data[50];
+        data_registos data;
         while(fgets(buffer, 50, ficheiroRegistos)){ // Percorrer o ficheiro todo, uma linha de cada vez
             int len = strlen(buffer);
             buffer[len-1] = '\0';
@@ -99,8 +105,13 @@ void loadRegistos(list_doentes_t *list){
                 //printf("[DEBUG] ID: %d\n", id);
             }
             if(count % 6 == 1){ // Caso se trate de uma data, carregá-la para a variável 'data'
-                strcpy(data, buffer);
-                //printf("[DEBUG] Data: %s\n", data);
+                char *dia = strtok(buffer, "/");
+                data.dia = convertToInteger(dia);
+                char *mes = strtok(NULL, "/");
+                data.mes = convertToInteger(mes);
+                char *ano = strtok(NULL, "/");
+                data.ano = convertToInteger(ano);
+                //printf("[DEBUG] Data: %s/%s/%s\n", dia, mes, ano);
             }
             if(count % 6 == 2){ // Caso se trate de uma tensão máxima, carregá-la para a variável 'tensaoMax'
                 tensaoMax = convertToInteger(buffer);
@@ -143,7 +154,7 @@ void updateDoentes(list_doentes_t *list){
         while(temp != NULL){
             fprintf(ficheiro, "%d\n", temp -> id);
             fprintf(ficheiro, "%s\n", temp -> nome);
-            fprintf(ficheiro, "%s\n", temp -> data_de_nascimento);
+            fprintf(ficheiro, "%d/%d/%d\n", temp -> data_de_nascimento.dia, temp -> data_de_nascimento.mes, temp -> data_de_nascimento.ano);
             fprintf(ficheiro, "%s\n", temp -> num_cc);
             fprintf(ficheiro, "%s\n", temp -> contacto);
             fprintf(ficheiro, "%s\n", temp -> email);
@@ -167,7 +178,7 @@ void updateRegistos(list_doentes_t *list){
                 l_noRegistos_t *nodeRegistos = listRegistos -> front;
                 while(nodeRegistos != NULL){
                     fprintf(ficheiro, "%d\n", nodeRegistos -> id);
-                    fprintf(ficheiro, "%s\n", nodeRegistos -> data);
+                    fprintf(ficheiro, "%d/%d/%d\n", nodeRegistos -> data_registo.dia, nodeRegistos -> data_registo.mes, nodeRegistos -> data_registo.ano);
                     fprintf(ficheiro, "%d\n", nodeRegistos -> tensaoMax);
                     fprintf(ficheiro, "%d\n", nodeRegistos -> tensaoMin);
                     fprintf(ficheiro, "%d\n", nodeRegistos -> peso);
@@ -203,10 +214,10 @@ int isInteger(char *str){
 
 void listNomes(list_doentes_t *list){
     l_noDoentes_t *node = list -> front;
-    printf("\n============================== DOENTES ===============================");
-    printf("\n ID | NOME\n");
+    printf("\n\033[90m============================== \033[37mDOENTES \033[90m===============================\033[0m");
+    printf("\n ID \033[90m|\033[0m NOME\n");
     while(node != NULL){
-        printf("%3d | %s\n", node -> id, node -> nome);
+        printf("%3d \033[90m|\033[0m %s\n", node -> id, node -> nome);
         node = node -> next;
     }
 }

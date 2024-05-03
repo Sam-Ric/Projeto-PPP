@@ -27,12 +27,14 @@ void clearListaRegistos(list_registos_t *list){
 	initListaRegistos(list);
 }
 
-void insertListaRegistos(list_registos_t *list, int id, char data[50], int tensaoMax, int tensaoMin, int peso, int altura){
+void insertListaRegistos(list_registos_t *list, int id, data_registos data_registo, int tensaoMax, int tensaoMin, int peso, int altura){
 	l_noRegistos_t *node = (l_noRegistos_t*)malloc(sizeof(l_noRegistos_t));
 	l_noRegistos_t *prev, *cur;
 	if(node != NULL){
 		node -> id = id;
-        strcpy(node -> data, data);
+        node -> data_registo.dia = data_registo.dia;
+		node -> data_registo.mes = data_registo.mes;
+		node -> data_registo.ano = data_registo.ano;
         node -> tensaoMax = tensaoMax;
         node -> tensaoMin = tensaoMin;
         node -> peso = peso;
@@ -77,7 +79,7 @@ void printRegistos(list_registos_t *list){
 	l_noRegistos_t *nodeRegistos = list -> front;
     while(nodeRegistos != NULL){
 	    printf("\n===== ID %2d =====\n", nodeRegistos -> id);
-    	printf(">> %s\n", nodeRegistos -> data);
+    	printf(">> %d/%d/%d\n", nodeRegistos -> data_registo.dia, nodeRegistos -> data_registo.mes, nodeRegistos -> data_registo.ano);
   		printf(">> %d\n", nodeRegistos -> tensaoMax);
   		printf(">> %d\n", nodeRegistos -> tensaoMin);
   		printf(">> %d\n", nodeRegistos -> peso);
