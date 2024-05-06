@@ -9,12 +9,10 @@
 
 int convertToInteger(char *str){
     int len = strlen(str);
-    //printf("[DEBUG] Input string = %s\n[DEBUG] String length = %d\n", str, len);
     int res = 0;
     for(int i = 0; i < len; ++i){
         if(str[i] != '\0' || str[i] != '\n'){
             res = res*10 + (str[i] - '0');
-            //printf("[DEBUG] Char in convertToInteger = %c || ASCII = %.3d\n", str[i], str[i]);
         }
     }
     return res;

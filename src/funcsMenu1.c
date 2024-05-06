@@ -62,7 +62,7 @@ void novoDoente(list_doentes_t *list){
         printf(">> _________-_-___\r>> ");
         inputFunction(num_cc, 50);
         for(int i = 0; i < (int)strlen(num_cc); ++i){
-            if((((i >= 0 && i < 9) || i == 10 || i == 14) && (num_cc[i] < '0' || num_cc[i] > '9')) || num_cc[9] != '-' || num_cc[11] != '-' || !isLetter(&num_cc[12]) || !isLetter(&num_cc[13])){
+            if((((i >= 0 && i < 9) || i == 10 || i == 14) && (num_cc[i] < '0' || num_cc[i] > '9')) || num_cc[9] != '-' || num_cc[11] != '-' || !isLetter(&num_cc[10]) ||!isLetter(&num_cc[12]) || !isLetter(&num_cc[13])){
                 validCC = 0;
             } else validCC = 1;
         }
@@ -86,5 +86,12 @@ void novoDoente(list_doentes_t *list){
     insertListaDoentes(list, id, nome, data_de_nascimento, num_cc, contacto, email);
 
     // Atualizar o ficheiro 'doentes.txt'
-    updateDoentes(list);
+    FILE * ficheiro = fopen("doentes.txt", "a");
+    fprintf(ficheiro, "%d\n", id);
+    fprintf(ficheiro, "%s\n", nome);
+    fprintf(ficheiro, "%d/%d/%d\n", data_de_nascimento.dia, data_de_nascimento.mes, data_de_nascimento.ano);
+    fprintf(ficheiro, "%s\n", num_cc);
+    fprintf(ficheiro, "%s\n", contacto);
+    fprintf(ficheiro, "%s\n", email);
+    fclose(ficheiro);
 }
