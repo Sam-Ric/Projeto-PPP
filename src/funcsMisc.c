@@ -42,7 +42,7 @@ void loadDoentes(list_doentes_t *list){
         // Variáveis que irão armazenar os diferentes tipos de dados do ficheiro
         int id;
         char nome[50], num_cc[50], email[50], contacto[50];
-        data_doentes data_de_nascimento;
+        struct_data data_de_nascimento;
         while(fgets(buffer, 50, ficheiroDoentes)){ // Percorrer o ficheiro todo, uma linha de cada vez
             int len = strlen(buffer);
             buffer[len-1] = '\0';
@@ -94,7 +94,7 @@ void loadRegistos(list_doentes_t *list){
     if(ficheiroRegistos != NULL){
         // Variáveis que irão armazenar os diferentes tipos de dados do ficheiro
         int id, tensaoMax, tensaoMin, peso, altura;
-        data_registos data;
+        struct_data data;
         while(fgets(buffer, 50, ficheiroRegistos)){ // Percorrer o ficheiro todo, uma linha de cada vez
             int len = strlen(buffer);
             buffer[len-1] = '\0';
@@ -226,4 +226,32 @@ int isLetter(char *ch){
         return 1;
     }
     return 0;
+}
+
+int verifyData(char* str, struct_data *data){
+    if(str[2] == '/' || str[5] == '/' || (int)strlen(str) != 10){
+        char *dia = strtok(str, "/");
+        char *mes = strtok(NULL, "/");
+        char *ano = strtok(NULL, "/");
+        if(!isInteger(dia) || !isInteger(mes) || !isInteger(ano))
+            return 0;
+        else {
+            data -> dia = convertToInteger(dia);
+            data -> mes = convertToInteger(mes);
+            data -> ano = convertToInteger(ano);
+        }
+    } else
+        return 0;
+
+    if(data -> dia < 1 || data -> dia > 31 || data -> mes < 1 || data -> mes > 12 || data -> ano < 1900 || data -> ano > 2024){
+        return 0;
+    } else {
+        if((data -> mes == 1 || data -> mes == 3 || data -> mes == 5 || data -> mes == 7 || data -> mes == 8 || data -> mes == 10 || data -> mes == 12) && (data -> dia < 1 || data -> dia > 31))
+            return 0;
+        if((data -> mes == 4 || data -> mes == 6 || data -> mes == 9 || data -> mes == 11) && (data -> dia < 1 || data -> dia > 30))
+            return 0;
+        if(data -> mes == 2 && (data -> dia < 1 || data -> dia > 29))
+            return 0;
+        return 1;
+    }
 }

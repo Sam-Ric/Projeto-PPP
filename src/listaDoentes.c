@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../lib/listaDoentes.h"
+#include "../lib/listaRegistos.h"
 
 void initListaDoentes(list_doentes_t *list){
 	list -> num_elems = 0;
@@ -27,7 +28,7 @@ void clearListaDoentes(list_doentes_t *list){
 	initListaDoentes(list);
 }
 
-void insertListaDoentes(list_doentes_t *list, int id, char nome[50], data_doentes data_de_nascimento, char num_cc[50], char contacto[50], char email[50]){
+void insertListaDoentes(list_doentes_t *list, int id, char nome[50], struct_data data_de_nascimento, char num_cc[50], char contacto[50], char email[50]){
 	l_noDoentes_t *node = (l_noDoentes_t*)malloc(sizeof(l_noDoentes_t));
 	l_noDoentes_t *prev, *cur;
 	if(node != NULL){

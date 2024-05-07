@@ -27,7 +27,7 @@ void clearListaRegistos(list_registos_t *list){
 	initListaRegistos(list);
 }
 
-void insertListaRegistos(list_registos_t *list, int id, data_registos data_registo, int tensaoMax, int tensaoMin, int peso, int altura){
+void insertListaRegistos(list_registos_t *list, int id, struct_data data_registo, int tensaoMax, int tensaoMin, int peso, int altura){
 	l_noRegistos_t *node = (l_noRegistos_t*)malloc(sizeof(l_noRegistos_t));
 	l_noRegistos_t *prev, *cur;
 	if(node != NULL){

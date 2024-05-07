@@ -22,7 +22,7 @@ void novoRegisto(list_doentes_t *list){
         if(verifyID(list, id)){
             // Obter a data do registo
             printf("Data do registo:\n");
-            data_registos data_registo;
+            struct_data data_registo;
             char dia[50] = "VOID";
             char mes[50] = "VOID";
             char ano[50] = "VOID";

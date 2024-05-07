@@ -4,17 +4,7 @@
 
 #ifndef LISTA_DOENTES_OA_H
 #define LISTA_DOENTES_OA_H
-#include "../lib/listaDoentes.h"
-
-typedef struct l_noDoentesOA { // Estrutura de um node da lista dos doentes
-	l_noDoentes_t *ref;
-	struct l_noDoentesOA *next;
-} l_noDoentesOA_t;
-
-typedef struct list_doentesOA_t{ // Estrutura da lista
-	size_t num_elems;
-	l_noDoentesOA_t *front;
-} list_doentesOA_t;
+#include "../lib/structs.h"
 
 void initListaDoentesOA(list_doentesOA_t *list); // Função que inicializa a lista
 int emptyListaDoentesOA(list_doentesOA_t *list); // Função que verifica se a lista está vazia

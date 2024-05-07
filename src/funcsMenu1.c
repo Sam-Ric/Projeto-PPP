@@ -29,32 +29,28 @@ void novoDoente(list_doentes_t *list){
     inputFunction(nome, 50);
     
     printf("Data de nascimento:\n");
-    data_doentes data_de_nascimento;
-    char dia[50] = "VOID";
-    char mes[50] = "VOID";
-    char ano[50] = "VOID";
-    printf("  - Dia:\n");
-    while(!isInteger(dia) || convertToInteger(dia) < 1 || convertToInteger(dia) > 31){
-        printf("  >> "); // (Formatação do texto)
-        inputFunction(dia, 50);
-        if(!isInteger(dia) || convertToInteger(dia) < 1 || convertToInteger(dia) > 31) printf("\033[31m[!]\033[0m Insira um dia válido.\n");
+    struct_data data_de_nascimento;
+    char data[50];
+    int validData = 0;
+    printf("Data: (formato DD/MM/YYYY)\n");
+    while(!validData){
+        printf(">> __/__/____\r>> ");
+        inputFunction(data, 50);
+        validData = verifyData(data, &data_de_nascimento);
+        if(validData == 0) printf("\033[31m[!]\033[0m Insira uma data válida.\n");
     }
-    printf("  - Mês:\n");
-    while(!isInteger(mes) || convertToInteger(mes) < 1 || convertToInteger(mes) > 12){
-        printf("  >> "); // (Formatação do texto)
-        inputFunction(mes, 50);
-        if(!isInteger(mes) || convertToInteger(mes) < 1 || convertToInteger(mes) > 12) printf("\033[31m[!]\033[0m Insira um mês válido.\n");
-    }
-    printf("  - Ano:\n");
-    while(!isInteger(ano) || convertToInteger(ano) < 1900 || convertToInteger(ano) > 2024){
-        printf("  >> "); // (Formatação do texto)
-        inputFunction(ano, 50);
-        if(!isInteger(ano) || convertToInteger(ano) < 1900 || convertToInteger(ano) > 2024) printf("\033[31m[!]\033[0m Insira um ano válido.\n");
-    }
+    /*
+    printf("[DEBUG] String = '%s'\n", data);
+    char *dia = strtok(data, "/");
+    printf("[DEBUG] Dia = %s\n", dia);
     data_de_nascimento.dia = convertToInteger(dia);
+    char *mes = strtok(NULL, "/");
+    printf("[DEBUG] Mês = %s\n", mes);
     data_de_nascimento.mes = convertToInteger(mes);
+    char *ano = strtok(NULL, "/");
+    printf("[DEBUG] Ano = %s\n", ano);
     data_de_nascimento.ano = convertToInteger(ano);
-
+    */
     printf("Cartão de cidadão:\n");
     char num_cc[50];
     int validCC = 0;
