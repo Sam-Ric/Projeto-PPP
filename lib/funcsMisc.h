@@ -16,6 +16,7 @@ int verifyID(list_doentes_t *list, int id); // Função que verifica a existênc
 int isInteger(char *str); // Função que verifica se há um inteiro armazenado numa string
 void listNomes(list_doentes_t *list); // Função que imprime os nomes e IDs de todos os doentes
 int isLetter(char *ch); // Função que verifica se um caracter dado é uma letra e, se for, converte as letras minúsculas em maiúsculas
-int verifyData(char* str, struct_data *data);
+int verifyData(char* str, struct_data *data); // Função que recebe uma string com uma data e verifica se esta é válida, atualizando a estrutra 'data' com os dados contidos na string
+int verifyEmail(char *str); // Função que verifica se um dado email apresenta um formato válido
 
 #endif

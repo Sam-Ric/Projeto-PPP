@@ -20,33 +20,18 @@ void novoRegisto(list_doentes_t *list){
         int id = convertToInteger(tempId);
         // Verificar se o ID é válido
         if(verifyID(list, id)){
+
             // Obter a data do registo
-            printf("Data do registo:\n");
             struct_data data_registo;
-            char dia[50] = "VOID";
-            char mes[50] = "VOID";
-            char ano[50] = "VOID";
-            printf("  - Dia:\n");
-            while(!isInteger(dia) || convertToInteger(dia) < 1 || convertToInteger(dia) > 31){
-                printf("  >> "); // (Formatação do texto)
-                inputFunction(dia, 50);
-                if(!isInteger(dia) || convertToInteger(dia) < 1 || convertToInteger(dia) > 31) printf("\033[31m[!]\033[0m Insira um dia válido.\n");
+            char data[50];
+            int validData = 0;
+            printf("Data: (formato DD/MM/YYYY)\n");
+            while(!validData){
+                printf(">> __/__/____\r>> ");
+                inputFunction(data, 50);
+                validData = verifyData(data, &data_registo);
+                if(validData == 0) printf("\033[31m[!]\033[0m Insira uma data válida.\n");
             }
-            printf("  - Mês:\n");
-            while(!isInteger(mes) || convertToInteger(mes) < 1 || convertToInteger(mes) > 12){
-                printf("  >> "); // (Formatação do texto)
-                inputFunction(mes, 50);
-                if(!isInteger(mes) || convertToInteger(mes) < 1 || convertToInteger(mes) > 12) printf("\033[31m[!]\033[0m Insira um mês válido.\n");
-            }
-            printf("  - Ano:\n");
-            while(!isInteger(ano) || convertToInteger(ano) < 1900 || convertToInteger(ano) > 2024){
-                printf("  >> "); // (Formatação do texto)
-                inputFunction(ano, 50);
-                if(!isInteger(ano) || convertToInteger(ano) < 1900 || convertToInteger(ano) > 2024) printf("\033[31m[!]\033[0m Insira um ano válido.\n");
-            }
-            data_registo.dia = convertToInteger(dia);
-            data_registo.mes = convertToInteger(mes);
-            data_registo.ano = convertToInteger(ano);
 
             // Obter o valor da tensão máxima
             printf("Tensão máxima:\n");

@@ -228,7 +228,7 @@ int isLetter(char *ch){
     return 0;
 }
 
-int verifyData(char* str, struct_data *data){
+int verifyData(char *str, struct_data *data){
     if(str[2] == '/' || str[5] == '/' || (int)strlen(str) != 10){
         char *dia = strtok(str, "/");
         char *mes = strtok(NULL, "/");
@@ -254,4 +254,15 @@ int verifyData(char* str, struct_data *data){
             return 0;
         return 1;
     }
+}
+
+int verifyEmail(char *str){
+    int len = strlen(str);
+    int flag1 = 0, flag2 = 0;
+    for(int i = 0; i < len; ++i){
+        if(str[i] == '@') ++flag1;
+        if(str[i] == '.') ++flag2;
+    }
+    if(flag1 == 1 && flag2 >= 1) return 1;
+    return 0;
 }

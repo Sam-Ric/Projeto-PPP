@@ -28,7 +28,6 @@ void novoDoente(list_doentes_t *list){
     char nome[50];
     inputFunction(nome, 50);
     
-    printf("Data de nascimento:\n");
     struct_data data_de_nascimento;
     char data[50];
     int validData = 0;
@@ -39,18 +38,7 @@ void novoDoente(list_doentes_t *list){
         validData = verifyData(data, &data_de_nascimento);
         if(validData == 0) printf("\033[31m[!]\033[0m Insira uma data válida.\n");
     }
-    /*
-    printf("[DEBUG] String = '%s'\n", data);
-    char *dia = strtok(data, "/");
-    printf("[DEBUG] Dia = %s\n", dia);
-    data_de_nascimento.dia = convertToInteger(dia);
-    char *mes = strtok(NULL, "/");
-    printf("[DEBUG] Mês = %s\n", mes);
-    data_de_nascimento.mes = convertToInteger(mes);
-    char *ano = strtok(NULL, "/");
-    printf("[DEBUG] Ano = %s\n", ano);
-    data_de_nascimento.ano = convertToInteger(ano);
-    */
+    
     printf("Cartão de cidadão:\n");
     char num_cc[50];
     int validCC = 0;
@@ -74,9 +62,16 @@ void novoDoente(list_doentes_t *list){
         if(!isInteger(contacto) || (int)strlen(contacto) != 9) printf("\033[31m[!]\033[0m Insira um contacto válido.\n");
     }
 
-    printf("Email:\n>> ");
+    printf("Email:\n");
     char email[50];
-    inputFunction(email, 50);
+    int validEmail = 0;
+    while(!validEmail){
+        printf(">> ");
+        inputFunction(email, 50);
+        validEmail = verifyEmail(email);
+        if(validEmail == 0) printf("\033[31m[!]\033[0m Insira um endereço de email válido.\n");
+    }
+    
 
     // Adicionar o novo doente à lista
     insertListaDoentes(list, id, nome, data_de_nascimento, num_cc, contacto, email);
