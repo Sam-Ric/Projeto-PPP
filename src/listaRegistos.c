@@ -7,6 +7,7 @@
 #include <string.h>
 #include "../lib/listaRegistos.h"
 #include "../lib/listaDoentes.h"
+#include "../lib/structs.h"
 
 void initListaRegistos(list_registos_t *list){
 	list -> num_elems = 0;
@@ -39,7 +40,7 @@ void insertListaRegistos(list_registos_t *list, int id, struct_data data_registo
         node -> tensaoMin = tensaoMin;
         node -> peso = peso;
         node -> altura = altura;
-		searchListaRegistos(list, id, &prev, &cur);
+		searchListaRegistos(list, data_registo, &prev, &cur);
 		if(prev != NULL){
 			prev -> next = node;
 			node -> next = cur;
@@ -52,27 +53,13 @@ void insertListaRegistos(list_registos_t *list, int id, struct_data data_registo
 	printf("[DEBUG] Registo inserido na lista!\n");
 }
 
-void searchListaRegistos(list_registos_t *list, int id, l_noRegistos_t **prev, l_noRegistos_t **cur){
+void searchListaRegistos(list_registos_t *list, struct_data data, l_noRegistos_t **prev, l_noRegistos_t **cur){
 	*prev = NULL;
 	*cur = list -> front;
-	while(*cur != NULL && (*cur) -> id < id){
+	while(*cur != NULL && ((*cur) -> data_registo.ano < data.ano || ((*cur) -> data_registo.ano == data.ano && (*cur) -> data_registo.mes < data.mes) || ((*cur) -> data_registo.ano == data.ano && (*cur) -> data_registo.mes == data.mes && (*cur) -> data_registo.dia < data.dia))){
 		*prev = *cur;
 		*cur = (*cur) -> next;
 	}
-}
-
-void removeListaRegistos(list_registos_t *list, int id){
-	l_noRegistos_t *prev, *cur;
-	searchListaRegistos(list, id, &prev, &cur);
-	if(cur != NULL && cur -> id == id){
-        if(prev != NULL)
-            prev -> next = cur -> next;
-        else
-            list -> front = cur -> next;
-		free(cur);
-		list -> num_elems--;
-    }
-	printf("[DEBUG] Registo removido da lista!\n");
 }
 
 void printRegistos(list_registos_t *list){

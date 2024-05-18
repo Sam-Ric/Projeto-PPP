@@ -34,6 +34,7 @@ int main(){
 
         if(menu == 1){ // Introduzir dados de um novo doente
             novoDoente(&doentes);
+            updateDoentes(&doentes);
         }
         else if(menu == 2){ // Eliminar um doente existente
             removerDoente(&doentes);
@@ -53,6 +54,7 @@ int main(){
         }
         else if(menu == 6){ // Registar as tensões, o peso e a altura de um determinado doente
             novoRegisto(&doentes);
+            updateRegistos(&doentes);
         }
         else if(menu == 0){ // Sair da aplicação
             clearListaDoentes(&doentes); // Libertar a memória alocada para a lista dos dados dos doentes
