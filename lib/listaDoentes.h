@@ -10,7 +10,7 @@
 void initListaDoentes(list_doentes_t *list); // Função que inicializa a lista
 int emptyListaDoentes(list_doentes_t *list); // Função que verifica se a lista está vazia
 void clearListaDoentes(list_doentes_t *list); // Função que elimina todos os elementos da lista
-void insertListaDoentes(list_doentes_t *list, int id, char nome[50], struct_data data_de_nascimento, char num_cc[50], char contacto[50], char email[50]); // Função que insere um elemento na lista
+void insertListaDoentes(list_doentes_t *list, l_noDoentes_t *node); // Função que insere um elemento na lista
 void searchListaDoentes(list_doentes_t *list, int id, l_noDoentes_t **prev, l_noDoentes_t **cur); // Função que procura um elemento na lista com base no seu ID
 void removeListaDoentes(list_doentes_t *list, int id); // Função que remove um elemento da lista
 

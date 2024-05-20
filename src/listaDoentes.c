@@ -28,21 +28,20 @@ void clearListaDoentes(list_doentes_t *list){
 	initListaDoentes(list);
 }
 
-void insertListaDoentes(list_doentes_t *list, int id, char nome[50], struct_data data_de_nascimento, char num_cc[50], char contacto[50], char email[50]){
+void insertListaDoentes(list_doentes_t *list, l_noDoentes_t *elem){
 	l_noDoentes_t *node = (l_noDoentes_t*)malloc(sizeof(l_noDoentes_t));
 	l_noDoentes_t *prev, *cur;
+	// Copiar os dados do nó 'elem' para o nó 'node'
+	node -> id = elem -> id;
+	strcpy(node -> nome, elem -> nome);
+	node -> data_de_nascimento = elem -> data_de_nascimento;
+	strcpy(node -> contacto, elem -> contacto);
+	strcpy(node -> num_cc, elem -> num_cc);
+	strcpy(node -> contacto, elem -> contacto);
+	strcpy(node -> email, elem -> email);
 	if(node != NULL){
-		// Inserir as informações dadas num nó
-		node -> id = id;
-        strcpy(node -> nome, nome);
-		node -> data_de_nascimento.dia = data_de_nascimento.dia;
-		node -> data_de_nascimento.mes = data_de_nascimento.mes;
-		node -> data_de_nascimento.ano = data_de_nascimento.ano;
-        strcpy(node -> num_cc, num_cc);
-        strcpy(node -> contacto, contacto);
-        strcpy(node -> email, email);
 		initListaRegistos(&(node -> registos)); // Inicializar a lista dos registos do doente
-		searchListaDoentes(list, id, &prev, &cur); // Procurar o local correto para inserir o nó criado
+		searchListaDoentes(list, node -> id, &prev, &cur); // Procurar o local correto para inserir o nó criado
 		// Inserir o nó na lista dos doentes
 		if(prev != NULL){
 			prev -> next = node;
@@ -53,7 +52,7 @@ void insertListaDoentes(list_doentes_t *list, int id, char nome[50], struct_data
 		}
 		list -> num_elems++;
 	}
-	printf("[DEBUG] Doente inserido na lista!\n");
+	printf("[DEBUG] Doente 'ID %d - %s' inserido na lista!\n", node -> id, node -> nome);
 }
 
 void searchListaDoentes(list_doentes_t *list, int id, l_noDoentes_t **prev, l_noDoentes_t **cur){

@@ -4,8 +4,10 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "../lib/listaDoentes.h"
 #include "../lib/listaRegistos.h"
+#include "../lib/listaDoentesOA.h"
 
 int convertToInteger(char *str){
     int len = strlen(str);
@@ -40,44 +42,43 @@ void loadDoentes(list_doentes_t *list){
     int count = 0; // Variável/Contador que identifica o tipo de dados de uma determinada linha
     if(ficheiroDoentes != NULL){
         // Variáveis que irão armazenar os diferentes tipos de dados do ficheiro
-        int id;
-        char nome[50], num_cc[50], email[50], contacto[50];
-        struct_data data_de_nascimento;
-        while(fgets(buffer, 50, ficheiroDoentes)){ // Percorrer o ficheiro todo, uma linha de cada vez
+        l_noDoentes_t *node = (l_noDoentes_t*)malloc(sizeof(l_noDoentes_t));
+        while(fgets(buffer, 50, ficheiroDoentes)){ // Percorrer o ficheiro todo, uma linha de cada vez;
             int len = strlen(buffer);
             buffer[len-1] = '\0';
             if(count % 6 == 0){ // Caso se trate de um ID, carregá-lo para a variável 'id'
-                id = convertToInteger(buffer);
+                node -> id = convertToInteger(buffer);
                 //printf("[DEBUG] ID: %d\n", id);
             }
             if(count % 6 == 1){ // Caso se trate de um nome, carregá-lo para a variável 'nome'
-                strcpy(nome, buffer);
+                strcpy(node -> nome, buffer);
                 //printf("[DEBUG] Nome: %s\n", nome);
             }
             if(count % 6 == 2){ // Caso se trate de uma data de nascimento, carregá-la para a variável 'data_de_nascimento'
                 char *dia = strtok(buffer, "/");
-                data_de_nascimento.dia = convertToInteger(dia);
+                node -> data_de_nascimento.dia = convertToInteger(dia);
                 char *mes = strtok(NULL, "/");
-                data_de_nascimento.mes = convertToInteger(mes);
+                node -> data_de_nascimento.mes = convertToInteger(mes);
                 char *ano = strtok(NULL, "/");
-                data_de_nascimento.ano = convertToInteger(ano);
+                node -> data_de_nascimento.ano = convertToInteger(ano);
                 //printf("[DEBUG] Data de nascimento: %s/%s/%s\n", dia, mes, ano);
             }
             if(count % 6 == 3){ // Caso se trate de um número de CC, carregá-lo para a variável 'num_cc'
-                strcpy(num_cc, buffer);
+                strcpy(node -> num_cc, buffer);
                 //printf("[DEBUG] Número do CC: %s\n", num_cc);
             }
             if(count % 6 == 4){ // Caso se trate de um número de telefone, carregá-lo para a variável 'contacto'
-                strcpy(contacto, buffer);
+                strcpy(node -> contacto, buffer);
                 //printf("[DEBUG] Contacto: %s\n", contacto);
             }
             if(count % 6 == 5){ // Caso se trate de um email, carregá-lo para a variável 'email' e inserir todos os dados na lista dos dados dos doentes
-                strcpy(email, buffer);
+                strcpy(node -> email, buffer);
                 //printf("[DEBUG] Email: %s\n", email);
-                insertListaDoentes(list, id, nome, data_de_nascimento, num_cc, contacto, email);
+                insertListaDoentes(list, node);
             }
             ++count;
         }
+        free(node);
     } else {
         printf("[!] Não foi possível abrir o ficheiro.\n");
     }

@@ -24,7 +24,7 @@ void printDoentesOA(list_doentesOA_t *doentesOA){
 void loadDoentesOA(list_doentesOA_t *doentesOA, list_doentes_t *doentes){
     l_noDoentes_t *toLoad = doentes -> front;
     if(toLoad != NULL){
-        while(toLoad != NULL){
+        for(int i = 0; i < (int)(doentes -> num_elems); ++i){
             insertListaDoentesOA(doentesOA, toLoad);
             toLoad = toLoad -> next;
         }

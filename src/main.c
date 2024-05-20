@@ -4,10 +4,14 @@
 #include "../lib/funcsMenu1.h"
 #include "../lib/funcsMenu2.h"
 #include "../lib/funcsMenu3.h"
+#include "../lib/funcsMenu4.h"
+#include "../lib/funcsMenu5.h"
 #include "../lib/funcsMenu6.h"
 #include "../lib/listaDoentes.h"
 #include "../lib/listaRegistos.h"
 #include "../lib/listaDoentesOA.h"
+#include "../lib/listaHipertensos.h"
+#include "../lib/structs.h"
 
 int main(){
     int status = 1; // Variável que define se o programa está em execução
@@ -24,7 +28,7 @@ int main(){
         printf("\33[90m[4]\033[0m Listar os doentes com tensões máximas acima de um determinado valor\n");
         printf("\33[90m[5]\033[0m Apresentar toda a informação de um determinado doente\n");
         printf("\33[90m[6]\033[0m Registar as tensões, o peso e a altura de um determinado doente\n");
-        printf("\33[90m[0]\033[0m Sair da aplicação\n");
+        printf("Pressione \033[90mENTER\033[0m para sair.\n");
         
         // Input do utilizador
         char s[5];
@@ -45,12 +49,15 @@ int main(){
             loadDoentesOA(&doentesOA, &doentes);
             printDoentesOA(&doentesOA);
             clearListaDoentesOA(&doentesOA);
+
         }
         else if(menu == 4){ // Listar os doentes com tensões máximas acima de um determinado valor
-
+           // list_hipertensos_t hipertensos;
+           // initListaDoentesH(&hipertensos);
+            
         }
         else if(menu == 5){ // Apresentar toda a informação de um determinado doente
-
+            printInfo(&doentes);
         }
         else if(menu == 6){ // Registar as tensões, o peso e a altura de um determinado doente
             novoRegisto(&doentes);
