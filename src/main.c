@@ -52,9 +52,15 @@ int main(){
 
         }
         else if(menu == 4){ // Listar os doentes com tensões máximas acima de um determinado valor
-           // list_hipertensos_t hipertensos;
-           // initListaDoentesH(&hipertensos);
-            
+            list_hipertensos_t hipertensos;
+            initListaDoentesH(&hipertensos);
+            printf("\nInsira o valor da tensão:\n>> ");
+            char tensaoStr[50];
+            inputFunction(tensaoStr, 50);
+            int tensao = convertToInteger(tensaoStr);
+            loadTensoes(&hipertensos, &doentes, tensao);
+            printTensoes(&hipertensos, &doentes, tensao);
+            clearListaDoentesH(&hipertensos);
         }
         else if(menu == 5){ // Apresentar toda a informação de um determinado doente
             printInfo(&doentes);

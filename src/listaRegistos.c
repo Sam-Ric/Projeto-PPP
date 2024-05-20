@@ -56,12 +56,12 @@ void insertListaRegistos(list_registos_t *list, int id, struct_data data_registo
 void searchListaRegistos(list_registos_t *list, struct_data data, l_noRegistos_t **prev, l_noRegistos_t **cur){
 	*prev = NULL;
 	*cur = list -> front;
-	while(*cur != NULL && ((*cur) -> data_registo.ano < data.ano || ((*cur) -> data_registo.ano == data.ano && (*cur) -> data_registo.mes < data.mes) || ((*cur) -> data_registo.ano == data.ano && (*cur) -> data_registo.mes == data.mes && (*cur) -> data_registo.dia < data.dia))){
+	while(*cur != NULL && ((*cur) -> data_registo.ano > data.ano || ((*cur) -> data_registo.ano == data.ano && (*cur) -> data_registo.mes > data.mes) || ((*cur) -> data_registo.ano == data.ano && (*cur) -> data_registo.mes == data.mes && (*cur) -> data_registo.dia > data.dia))){
 		*prev = *cur;
 		*cur = (*cur) -> next;
 	}
 }
-
+/*
 void printRegistos(list_registos_t *list){
 	l_noRegistos_t *nodeRegistos = list -> front;
     while(nodeRegistos != NULL){
@@ -75,3 +75,4 @@ void printRegistos(list_registos_t *list){
 	}
 	printf("\n[DEBUG] Todos os elementos foram imprimidos.\n");
 }
+*/

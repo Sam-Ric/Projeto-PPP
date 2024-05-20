@@ -18,5 +18,6 @@ void listNomes(list_doentes_t *list); // Função que imprime os nomes e IDs de 
 int isLetter(char *ch); // Função que verifica se um caracter dado é uma letra e, se for, converte as letras minúsculas em maiúsculas
 int verifyData(char* str, struct_data *data); // Função que recebe uma string com uma data e verifica se esta é válida, atualizando a estrutra 'data' com os dados contidos na string
 int verifyEmail(char *str); // Função que verifica se um dado email apresenta um formato válido
+int verifyName(char *str);
 
 #endif

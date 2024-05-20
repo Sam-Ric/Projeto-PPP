@@ -6,7 +6,7 @@
 #ifndef FUNCSMENU4_H
 #define FUNCSMENU4_H
 
-void printTensoes(list_hipertensos_t *list);
-void loadTensoes(list_hipertensos_t *hipertensos, list_doentes_t *doentes);
+void printTensoes(list_hipertensos_t *hipertensos, list_doentes_t *doentes, int tensao);
+void loadTensoes(list_hipertensos_t *hipertensos, list_doentes_t *doentes, int tensao);
 
 #endif

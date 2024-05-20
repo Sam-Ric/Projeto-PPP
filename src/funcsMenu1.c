@@ -30,9 +30,15 @@ void novoDoente(list_doentes_t *list){
         listNomes(list);
 
     // Pedir ao utilizador os dados do novo doente
-    printf("\nNome do doente:\n>> ");
+    
     char nome[50];
-    inputFunction(nome, 50);
+    int validName = 0;
+    while(!validName){
+        printf("\nNome do doente:\n>> ");
+        inputFunction(nome, 50);
+        validName = verifyName(nome);
+        if(!validName) printf("\033[31m[!]\033[0m Insira um nome válido.\n");
+    }
     strcpy(node -> nome, nome);
     
     struct_data data_de_nascimento;

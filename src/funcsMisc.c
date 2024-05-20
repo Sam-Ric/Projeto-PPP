@@ -267,3 +267,11 @@ int verifyEmail(char *str){
     if(flag1 == 1 && flag2 >= 1) return 1;
     return 0;
 }
+
+int verifyName(char *str){
+    int len = strlen(str);
+    for(int i = 0; i < len; ++i){
+        if(str[i] >= 33 && str[i] <= 64) return 0;
+    }
+    return 1;
+}

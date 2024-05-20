@@ -1,7 +1,7 @@
 /*
     Funções relativas à lista que contém os doentes com tensões máximas acima de um determinado valor
 */
-/*
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,12 +28,12 @@ void clearListaDoentesH(list_hipertensos_t *list){
 	initListaDoentesH(list);
 }
 
-void insertListaDoentesH(list_hipertensos_t *list, l_noHipertensos_t *elem, int tensao){
+void insertListaDoentesH(list_hipertensos_t *list, l_noRegistos_t *registo){
 	l_noHipertensos_t *node = (l_noHipertensos_t*)malloc(sizeof(l_noHipertensos_t));
 	l_noHipertensos_t *prev, *cur;
 	if(node != NULL){
-        node -> ref = elem;
-		searchListaDoentesH(list, tensao, &prev, &cur);
+        node -> ref = registo;
+		searchListaDoentesH(list, node -> ref -> tensaoMax, &prev, &cur);
 		if(prev != NULL){
 			prev -> next = node;
 			node -> next = cur;
@@ -49,29 +49,8 @@ void insertListaDoentesH(list_hipertensos_t *list, l_noHipertensos_t *elem, int 
 void searchListaDoentesH(list_hipertensos_t *list, int tensao, l_noHipertensos_t **prev, l_noHipertensos_t **cur){
 	*prev = NULL;
 	*cur = list -> front;
-	int maiorTensao = 0;
-	l_noRegistos_t *temp = (*cur) -> ref -> registos.front;
-	while(temp -> next != NULL){
-		if(temp -> tensaoMax > maiorTensao) maiorTensao = temp -> tensaoMax;
-		temp = temp -> next;
-	}
-	while(*cur != NULL && maiorTensao > tensao){
+	while(*cur != NULL && (*cur) -> ref -> tensaoMax > tensao){
 		*prev = *cur;
 		*cur = (*cur) -> next;
 	}
 }
-
-void removeListaDoentesH(list_hipertensos_t *list, l_noDoentes_t *elem){
-	l_noHipertensos_t *prev, *cur;
-	searchListaDoentesH(list, elem, &prev, &cur);
-	if(cur != NULL && cur -> ref -> id == elem -> id){
-        if(prev != NULL)
-            prev -> next = cur -> next;
-        else
-            list -> front = cur -> next;
-		free(cur);
-		list -> num_elems--;
-    }
-	printf("[DEBUG] Doente removido da lista dos hipertensos!\n");
-}
-*/

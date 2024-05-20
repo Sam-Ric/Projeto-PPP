@@ -59,7 +59,7 @@ typedef struct list_doentesOA_t{
 
 // Estrutura de um node da lista dos doentes ordenada com base num valor de tensão
 typedef struct l_noHipertensos {
-	l_noDoentes_t *ref;
+	l_noRegistos_t *ref;
 	struct l_noHipertensos *next;
 } l_noHipertensos_t;
 

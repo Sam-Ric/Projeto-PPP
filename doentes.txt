@@ -1,12 +1,18 @@
 1
-bruno
-1/1/2001
-numCC
-132123123
-mail
+Ana Maria Silva
+30/10/2000
+04236786-7-ZX2
+939127381
+anaSilva@dei.uc.pt
 2
-alvaro
-1/1/2001
-812391831-1-ZX1
-391283191
-@.
+Paulo Silva
+3/10/2002
+04936886-7-ZX2
+958123571
+pSilva@dei.uc.pt
+3
+João Bento
+10/1/2002
+461827391-3-ZX1
+948192712
+joao.b@gmail.com
