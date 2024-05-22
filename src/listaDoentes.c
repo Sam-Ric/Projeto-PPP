@@ -52,7 +52,6 @@ void insertListaDoentes(list_doentes_t *list, l_noDoentes_t *elem){
 		}
 		list -> num_elems++;
 	}
-	printf("[DEBUG] Doente 'ID %d - %s' inserido na lista!\n", node -> id, node -> nome);
 }
 
 void searchListaDoentes(list_doentes_t *list, int id, l_noDoentes_t **prev, l_noDoentes_t **cur){
@@ -76,5 +75,4 @@ void removeListaDoentes(list_doentes_t *list, int id){
 		free(cur);
 		list -> num_elems--;
     }
-	printf("[DEBUG] Doente removido da lista!\n");
 }

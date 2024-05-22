@@ -15,7 +15,6 @@ void printDoentesOA(list_doentesOA_t *doentesOA){
             printf("%3d \033[90m|\033[0m %-s\n", node -> ref -> id, node -> ref -> nome);
 		    node = node -> next;
     	}
-        printf("\n[DEBUG] Todos os elementos foram imprimidos.\n");
     } else {
         printf("\033[31m[!]\033[0m Não há elementos para imprimir.\n");
     }
@@ -28,6 +27,5 @@ void loadDoentesOA(list_doentesOA_t *doentesOA, list_doentes_t *doentes){
             insertListaDoentesOA(doentesOA, toLoad);
             toLoad = toLoad -> next;
         }
-        printf("[DEBUG] Elementos inseridos na lista por ordem alfabética.\n");
     }
 }

@@ -80,15 +80,8 @@ void novoRegisto(list_doentes_t *list){
             }
             insertListaRegistos(&(node -> registos), id, data_registo, tensaoMax, tensaoMin, peso, altura);
 
-            // Atualizar o ficheiro 'doentes.txt'
-            FILE * ficheiro = fopen("registos.txt", "a");
-            fprintf(ficheiro, "%d\n", id);
-            fprintf(ficheiro, "%d/%d/%d\n", data_registo.dia, data_registo.mes, data_registo.ano);
-            fprintf(ficheiro, "%d\n", tensaoMax);
-            fprintf(ficheiro, "%d\n", tensaoMin);
-            fprintf(ficheiro, "%d\n", peso);
-            fprintf(ficheiro, "%d\n", altura);
-            fclose(ficheiro);
+            // Atualizar o ficheiro 'registos.txt'
+            updateRegistos(list);
         } else {
             printf("\033[31m[!]\033[0m Não foi possível selecionar o doente.\n");
         }

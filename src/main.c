@@ -72,7 +72,6 @@ int main(){
         else if(menu == 0){ // Sair da aplicação
             clearListaDoentes(&doentes); // Libertar a memória alocada para a lista dos dados dos doentes
             status = 0; // Terminar a execução do ciclo while
-            printf("\n[DEBUG] Execução terminada.\n");
         }
         else { // Inputs inválidos.
             printf("\n\033[31m[!]\033[0m Opção inválida.\n");

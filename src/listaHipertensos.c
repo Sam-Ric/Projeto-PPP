@@ -43,7 +43,6 @@ void insertListaDoentesH(list_hipertensos_t *list, l_noRegistos_t *registo){
 		}
 		list -> num_elems++;
 	}
-	printf("[DEBUG] Doente inserido na lista dos hipertensos!\n");
 }
 
 void searchListaDoentesH(list_hipertensos_t *list, int tensao, l_noHipertensos_t **prev, l_noHipertensos_t **cur){

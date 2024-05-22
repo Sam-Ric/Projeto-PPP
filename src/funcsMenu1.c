@@ -30,7 +30,6 @@ void novoDoente(list_doentes_t *list){
         listNomes(list);
 
     // Pedir ao utilizador os dados do novo doente
-    
     char nome[50];
     int validName = 0;
     while(!validName){
@@ -94,12 +93,5 @@ void novoDoente(list_doentes_t *list){
     insertListaDoentes(list, node);
 
     // Atualizar o ficheiro 'doentes.txt'
-    FILE * ficheiro = fopen("doentes.txt", "a");
-    fprintf(ficheiro, "%d\n", id);
-    fprintf(ficheiro, "%s\n", nome);
-    fprintf(ficheiro, "%d/%d/%d\n", data_de_nascimento.dia, data_de_nascimento.mes, data_de_nascimento.ano);
-    fprintf(ficheiro, "%s\n", num_cc);
-    fprintf(ficheiro, "%s\n", contacto);
-    fprintf(ficheiro, "%s\n", email);
-    fclose(ficheiro);
+    updateDoentes(list);
 }

@@ -20,7 +20,6 @@ void removerDoente(list_doentes_t *list){
         char input[50];
         inputFunction(input, 50);
         int id = convertToInteger(input);
-        printf("[DEBUG] verifyID(%d) = %d\n", id, verifyID(list, id));
         if(!verifyID(list, id)){ // Verificar se o ID dado é válido
             printf("\033[31m[!]\033[0m ID inválido.\n");
         } else {

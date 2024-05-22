@@ -42,7 +42,6 @@ void insertListaDoentesOA(list_doentesOA_t *list, l_noDoentes_t *elem){
 		}
 		list -> num_elems++;
 	}
-	printf("[DEBUG] Doente inserido na lista por ordem alfabética!\n");
 }
 
 void searchListaDoentesOA(list_doentesOA_t *list, l_noDoentes_t *elem, l_noDoentesOA_t **prev, l_noDoentesOA_t **cur){
@@ -52,18 +51,4 @@ void searchListaDoentesOA(list_doentesOA_t *list, l_noDoentes_t *elem, l_noDoent
 		*prev = *cur;
 		*cur = (*cur) -> next;
 	}
-}
-
-void removeListaDoentesOA(list_doentesOA_t *list, l_noDoentes_t *elem){
-	l_noDoentesOA_t *prev, *cur;
-	searchListaDoentesOA(list, elem, &prev, &cur);
-	if(cur != NULL && cur -> ref -> id == elem -> id){
-        if(prev != NULL)
-            prev -> next = cur -> next;
-        else
-            list -> front = cur -> next;
-		free(cur);
-		list -> num_elems--;
-    }
-	printf("[DEBUG] Doente removido da lista por ordem alfabética!\n");
 }

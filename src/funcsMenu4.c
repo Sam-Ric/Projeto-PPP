@@ -10,7 +10,7 @@
 void printTensoes(list_hipertensos_t *hipertensos, list_doentes_t *doentes, int tensao){
 	l_noHipertensos_t *node = hipertensos -> front;
     if(node != NULL){
-        printf("\n\033[90m================ \033[37m DOENTES COM TENSÃO MÁXIMA ACIMA DE %d \033[90m================\033[0m\n", tensao); //////////////////////// ADICIONAR TEXTO
+        printf("\n\033[90m================ \033[37m DOENTES COM TENSÃO MÁXIMA ACIMA DE %d \033[90m================\033[0m\n", tensao);
         printf(" ID \033[90m|\033[0m NOME                              \033[90m|\033[0m TENSÃO\n");
         while(node != NULL){
             printf("%3d \033[90m|\033[0m", node -> ref -> id);
@@ -21,7 +21,6 @@ void printTensoes(list_hipertensos_t *hipertensos, list_doentes_t *doentes, int 
             printf(" %-33s \033[90m|\033[0m %5d\n", doente -> nome, node -> ref -> tensaoMax);
 		    node = node -> next;
     	}
-        printf("\n[DEBUG] Todos os elementos foram imprimidos.\n");
     } else {
         printf("\033[31m[!]\033[0m Não há elementos para imprimir.\n");
     }

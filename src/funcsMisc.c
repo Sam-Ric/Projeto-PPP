@@ -31,7 +31,6 @@ void inputFunction(char str[], int size){
         while((ch = getchar()) != EOF && ch != '\n')
             ;
     }
-    //printf("[DEBUG] Input = %s\n", str);
 }
 
 void loadDoentes(list_doentes_t *list){
@@ -82,7 +81,6 @@ void loadDoentes(list_doentes_t *list){
     } else {
         printf("[!] Não foi possível abrir o ficheiro.\n");
     }
-    printf("[DEBUG] Dados do ficheiro 'doentes.txt' carregados.\n");
     fclose(ficheiroDoentes); // Fechar o ficheiro 'doentes.txt'
 }
 
@@ -141,7 +139,6 @@ void loadRegistos(list_doentes_t *list){
     } else {
         printf("[!] Não foi possível abrir o ficheiro.\n");
     }
-    printf("[DEBUG] Dados do ficheiro 'registos.txt' carregados.\n");
     fclose(ficheiroRegistos); // Fechar o ficheiro 'registos.txt'
 }
 
@@ -159,7 +156,6 @@ void updateDoentes(list_doentes_t *list){
             fprintf(ficheiro, "%s\n", temp -> email);
             temp = temp -> next;
         }
-        printf("[DEBUG] Ficheiro 'doentes.txt' atualizado!\n");
     } else {
         printf("[!] Não foi possível atualizar o ficheiro.\n");
     }
@@ -186,7 +182,6 @@ void updateRegistos(list_doentes_t *list){
                 }
                 nodeDoentes = nodeDoentes -> next;
             }
-            printf("[DEBUG] Ficheiro 'registos.txt' atualizado!\n");
         }
     } else {
         printf("[!] Não foi possível atualizar o ficheiro.\n");

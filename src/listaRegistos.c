@@ -50,7 +50,6 @@ void insertListaRegistos(list_registos_t *list, int id, struct_data data_registo
 		}
 		list -> num_elems++;
 	}
-	printf("[DEBUG] Registo inserido na lista!\n");
 }
 
 void searchListaRegistos(list_registos_t *list, struct_data data, l_noRegistos_t **prev, l_noRegistos_t **cur){
@@ -61,18 +60,3 @@ void searchListaRegistos(list_registos_t *list, struct_data data, l_noRegistos_t
 		*cur = (*cur) -> next;
 	}
 }
-/*
-void printRegistos(list_registos_t *list){
-	l_noRegistos_t *nodeRegistos = list -> front;
-    while(nodeRegistos != NULL){
-	    printf("\n===== ID %2d =====\n", nodeRegistos -> id);
-    	printf(">> %d/%d/%d\n", nodeRegistos -> data_registo.dia, nodeRegistos -> data_registo.mes, nodeRegistos -> data_registo.ano);
-  		printf(">> %d\n", nodeRegistos -> tensaoMax);
-  		printf(">> %d\n", nodeRegistos -> tensaoMin);
-  		printf(">> %d\n", nodeRegistos -> peso);
-   		printf(">> %d\n", nodeRegistos -> altura);
-   		nodeRegistos = nodeRegistos -> next;
-	}
-	printf("\n[DEBUG] Todos os elementos foram imprimidos.\n");
-}
-*/
