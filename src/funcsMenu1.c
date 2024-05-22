@@ -94,4 +94,5 @@ void novoDoente(list_doentes_t *list){
 
     // Atualizar o ficheiro 'doentes.txt'
     updateDoentes(list);
+    free(node);
 }
